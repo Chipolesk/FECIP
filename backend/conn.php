@@ -46,6 +46,8 @@ try {
             if ($stmt === false) {
                 throw new Exception('Falha ao inserir usuário: ' . json_encode(sqlsrv_errors()));
             } else {
+                
+                    echo "<script>usuarioRegistrado('$nome_user');</script>";
                 $response = array('status' => 'sucesso', 'message' => 'Usuário inserido com sucesso!');
                 echo json_encode($response);
             }
