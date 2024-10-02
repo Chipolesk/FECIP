@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 header('Content-Type: application/json');
+
+// Receber e decodificar os dados JSON
 $data = json_decode(file_get_contents('php://input'), true);
 
 try {
@@ -24,25 +26,22 @@ try {
         "LoginTimeout" => 30,  // Timeout da conexão
     );
 
-    
     // Estabelecer a conexão com o SQL Server
     $conn = sqlsrv_connect($serverName, $connectionOptions);
     
-echo json_encode(array('message' => 'VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .'));
-    
     // Verificar se a conexão foi bem-sucedida
     if ($conn === false) {
-        throw new Exception('Falha na conexão com o SQL Server: ' . print_r(sqlsrv_errors(), true));
+        throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors()));
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         error_log("Requisição POST recebida");
         
-        if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
-
-            $nome_user = $_POST['nome_user'];  
-            $senha_user = $_POST['senha_user'];  
-            $icone_user = $_POST['icone_escolhido'];
+        // Verificar se os dados necessários foram enviados
+        if (isset($data['nome_user']) && isset($data['senha_user']) && isset($data['icone_escolhido'])) {
+            $nome_user = $data['nome_user'];  
+            $senha_user = $data['senha_user'];  
+            $icone_user = $data['icone_escolhido'];
 
             // Montar o comando SQL de inserção
             $sql = "INSERT INTO digitalcore.usuario (nome_user, senha_user, icone_user) VALUES (?, ?, ?)";
@@ -55,10 +54,9 @@ echo json_encode(array('message' => 'VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .'))
 
             // Verificar se a query foi bem-sucedida
             if ($stmt === false) {
-                throw new Exception('Falha ao inserir usuário: ' . print_r(sqlsrv_errors(), true));
+                throw new Exception('Falha ao inserir usuário: ' . json_encode(sqlsrv_errors()));
             } else {
                 $response = array('status' => 'sucesso', 'message' => 'Usuário inserido com sucesso!');
-                
                 echo json_encode($response);
             }
         } else {
@@ -67,9 +65,6 @@ echo json_encode(array('message' => 'VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .'))
     }
 } catch (Exception $e) {
     // Capturar erros e retornar em formato JSON
-echo "Caiu no catch: " . $e->getMessage();    
-
-    
     $response = array('status' => 'erro', 'message' => $e->getMessage());
     echo json_encode($response);
 } finally {
