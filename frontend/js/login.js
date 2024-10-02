@@ -40,30 +40,6 @@ modo.addEventListener('click', () => {
     form.classList.remove('dark');
 });
 
-
-
-// Função para enviar os dados do formulário
-function enviarFormulario(event) {
-    event.preventDefault();  // Previne o comportamento padrão do formulário
-
-    const nome = document.getElementById('nome').value;
-    const senha = document.getElementById('senha').value;
-    const icone = document.getElementById('icone-escolhido-input').value;  // Obtendo o valor correto do campo oculto
-
-    fetch('https://digitalcore.azurewebsites.net/backend/conn.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'  // Corrigido para o formato adequado
-        },
-        body: JSON.stringify({ 
-            nome: nome, 
-            senha: senha, 
-            icone: icone 
-        })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log('erro', error));
 }
 
 // Adiciona o listener ao formulário para enviar os dados
