@@ -28,7 +28,7 @@ try {
     // Estabelecer a conexão com o SQL Server
     $conn = sqlsrv_connect($serverName, $connectionOptions);
     
-echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .";
+echo json_encode(array('message' => 'VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .'));
     
     // Verificar se a conexão foi bem-sucedida
     if ($conn === false) {
