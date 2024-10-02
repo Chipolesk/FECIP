@@ -1,4 +1,13 @@
 <?php
+header("Access-Control-Allow-Origin: *"); // Permite acesso de qualquer origem
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // Métodos permitidos
+header("Access-Control-Allow-Headers: Content-Type"); // Cabeçalhos permitidos
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    // Se for uma requisição OPTIONS, retornar 200 e sair
+    http_response_code(200);
+    exit;
+}
 
 header('Content-Type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
