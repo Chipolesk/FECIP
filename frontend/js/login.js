@@ -1,20 +1,3 @@
-const modo = document.getElementById('icone-lua');
-
-modo.addEventListener('click', () => { 
-    const form = document.getElementById('login'); 
-    if(modo.classList.contains('fa-moon')){
-        modo.classList.remove('fa-moon');
-        modo.classList.add('fa-sun');
-
-        form.classList.add('dark');
-        return;
-    }
-    modo.classList.add('fa-moon');
-    modo.classList.remove('fa-sun');
-    form.classList.remove('dark');
-});
-
-
 // Lista de ícones disponíveis
 var icones = ['../images/icone1.png', '../images/icone2.png', '../images/icone3.png', '../images/icone4.png', '../images/icone5.png', '../images/icone6.png'];
 var indiceAtual = 0;
@@ -40,6 +23,24 @@ function mudarIcone(direcao) {
     // Atualiza o valor do campo oculto para o ícone selecionado
     document.getElementById('icone-escolhido-input').value = icones[indiceAtual];
 }
+
+const modo = document.getElementById('icone-lua');
+
+modo.addEventListener('click', () => { 
+    const form = document.getElementById('login'); 
+    if(modo.classList.contains('fa-moon')){
+        modo.classList.remove('fa-moon');
+        modo.classList.add('fa-sun');
+
+        form.classList.add('dark');
+        return;
+    }
+    modo.classList.add('fa-moon');
+    modo.classList.remove('fa-sun');
+    form.classList.remove('dark');
+});
+
+
 
 // Função para enviar os dados do formulário
 function enviarFormulario(event) {
