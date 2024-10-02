@@ -12,16 +12,16 @@
     <script type="text/javascript" src="../js/login.js"></script>
    <!--Bloco principal onde contém todas as infos-->
 <main id="container">
-    <!--Formulário de Login-->
-    <form id="login" action="https://digitalcore.azurewebsites.net/backend/conn.php" method="POST">
+   <!-- Formulário de Login -->
+<form id="login" action="https://digitalcore.azurewebsites.net/backend/conn.php" method="POST">
     
-    <!--Cabeçalho de login-->
+    <!-- Cabeçalho de login -->
     <div id="cabecalho">
-    <h1>Cadastre-se</h1>
-    <i id="icone-lua" class="fa-solid fa-moon" class="fa-solid fa-sun"></i>
+        <h1>Cadastre-se</h1>
+        <i id="icone-lua" class="fa-solid fa-moon"></i>
     </div>
     
-    <!--Imagens de login-->
+    <!-- Imagens de login -->
     <div id="icone-carrossel">
         <h2>Escolha seu ícone</h2>
         
@@ -36,13 +36,10 @@
 
     <!-- Campo oculto para armazenar o caminho do ícone escolhido -->
     <input type="hidden" name="icone_escolhido" id="icone-escolhido-input" value="">
-
-
-
     
-    <!--Inputs de Login-->
+    <!-- Inputs de Login -->
     <div id="inputs">
-        <!--Input de Nome-->
+        <!-- Input de Nome -->
         <div class="inputbox">
             <label>Nome
                 <div class="input-field">
@@ -52,22 +49,19 @@
             </label>
         </div>
 
-    <!--Input de senha-->
-    <div class="inputbox">
-        <label>Senha
-            <div class="input-field">
-                <i class="fa-solid fa-key"></i>
-                <input type="password" id="senha" name="senha_user">
-            </div>
-        </label >
-    </div>
-    
+        <!-- Input de senha -->
+        <div class="inputbox">
+            <label>Senha
+                <div class="input-field">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" id="senha" name="senha_user">
+                </div>
+            </label >
+        </div>
     </div>
       
-    
     <button type="submit" id="btnlog">Cadastrar-se!</button>
-    
-    </form>
+</form>
     </main>
 
 </body>
