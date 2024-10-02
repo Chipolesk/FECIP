@@ -29,10 +29,10 @@ try {
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
+        if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone-escolhido-input'])) {
             $nome_user = $_POST['nome_user'];  
             $senha_user = $_POST['senha_user'];  
-            $icone_user = $_POST['icone_escolhido'];
+            $icone_user = $_POST['icone-escolhido-input'];
 
             $sql = "INSERT INTO digitalcore.usuario (nome_user, senha_user, icone_user) VALUES (?, ?, ?)";
             $params = array($nome_user, $senha_user, $icone_user);
