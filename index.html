@@ -39,18 +39,19 @@
 </div>
 <!--Barra de pesquisa-->
 <form action="" class="dflex" style="margin-right: 340px;">
-    <div class="input-group me-5"><input type="search" name="" id="searchBar" class="form-control" placeholder="Buscar Jogos"><button type="submit" class="btn btn-outline-success">Buscar</button></div>
+    <div class="input-group me-5"><input type="search" name="" id="searchBar" class="form-control" placeholder="Buscar Jogos"><button type="submit" class="btn btn-outline-success">Buscar</button>
+    </div>
 </form>
 
-<!--Botões de cadastro-->
-<div class="container-btn">
-    <div class="btn-group">
-   
-    <button class="btn btn-outline-success" onclick="btncadastro()">CADASTRAR</button>
-    <button class="btn btn-outline-success" onclick="btnlogin()">LOGAR</button>
+<div class="container-btn" id="user-controls">
+    <div class="btn-group" id="auth-buttons">
+        <button class="btn btn-outline-success" onclick="btncadastro()">CADASTRAR</button>
+        <button class="btn btn-outline-success" onclick="btnlogin()">LOGAR</button>
     </div>
+    <div id="user-info" style="display: none;">
+        <span id="username"></span>
+        <button class="btn btn-outline-danger" onclick="logout()">SAIR</button>
     </div>
-
 </div>
 </nav>
 
