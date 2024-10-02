@@ -10,15 +10,15 @@ let estaLogado = false; // Inicialmente, o usuário não está logado
 let userNickname = ''; // Variável para armazenar o nickname do usuário
 
 // Função para atualizar a interface do usuário
-function AttPagina() {
+function atualizaPagina() {
     // Recupera o estado do login do localStorage
-    EstaLogado = localStorage.getItem('EstaLogado') === 'true';
+    estaLogado = localStorage.getItem('estaLogado') === 'true';
     userNickname = localStorage.getItem('nickname') || ''; // Recupera o nickname do localStorage
 
     const btnGroup = document.querySelector('.container-btn');
     btnGroup.innerHTML = ''; // Limpa os botões existentes
 
-    if (EstaLogado) {
+    if (estaLogado) {
         // Se o usuário está logado, exibe o nome do usuário e o botão de sair
         btnGroup.innerHTML = `
             <span class="navbar-text">Bem-vindo, ${userNickname}!</span>
