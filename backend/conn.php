@@ -33,7 +33,7 @@ try {
         if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
             $nome_user = $_POST['nome_user'];  
             $senha_user = $_POST['senha_user'];  
-            $icone_user = $_POST['icone_escolhido'];
+            $icone_user = basename($_POST['icone_escolhido']);
             
             error_log("Dados POST recebidos: " . print_r($_POST, true));
 
