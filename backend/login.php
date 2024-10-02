@@ -1,8 +1,15 @@
 <?php
 
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
 header('Content-Type: application/json');
-
-
 try {
     // Defina as informações de conexão
     $serverName = "digitalcoreserver.database.windows.net";  // Host do servidor SQL
@@ -19,13 +26,14 @@ try {
     // Estabelecer a conexão com o SQL Server
     $conn = sqlsrv_connect($serverName, $connectionOptions);
     
-echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .";
+
     
     // Verificar se a conexão foi bem-sucedida
     if ($conn === false) {
         throw new Exception('Falha na conexão com o SQL Server: ' . print_r(sqlsrv_errors(), true));
     }
-
+        echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .";
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         error_log("Requisição POST recebida");
         
