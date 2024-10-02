@@ -27,7 +27,7 @@ try {
     if ($conn === false) {
         throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors()));
     }
-    echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . ."
+    echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
