@@ -29,10 +29,10 @@ try {
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone-escolhido-input'])) {
+        if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
             $nome_user = $_POST['nome_user'];  
             $senha_user = $_POST['senha_user'];  
-            $icone_user = $_POST['icone-escolhido-input'];
+            $icone_user = $_POST['icone_escolhido'];
 
             $sql = "INSERT INTO digitalcore.usuario (nome_user, senha_user, icone_user) VALUES (?, ?, ?)";
             $params = array($nome_user, $senha_user, $icone_user);
@@ -46,7 +46,7 @@ try {
                 echo json_encode($response);
             }
         } else {
-            throw new Exception('Dados do usuário não foram enviados corretamente.');
+            throw new Exception('Dados do usuário não foram enviados corretamente.' . json_encode(sqlsrv_errors()));
         }
     }
 } catch (Exception $e) {
