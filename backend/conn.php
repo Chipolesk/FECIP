@@ -27,12 +27,16 @@ try {
     if ($conn === false) {
         throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors()));
     }
+    echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . ."
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
             $nome_user = $_POST['nome_user'];  
             $senha_user = $_POST['senha_user'];  
             $icone_user = $_POST['icone_escolhido'];
+            
+            error_log("Dados POST recebidos: " . print_r($_POST, true));
+
 
             $sql = "INSERT INTO digitalcore.usuario (nome_user, senha_user, icone_user) VALUES (?, ?, ?)";
             $params = array($nome_user, $senha_user, $icone_user);
