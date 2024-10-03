@@ -22,7 +22,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Verificar se o usuário existe
-$sql = "SELECT senha_user FROM digitalcore.usuario WHERE user_name = ?";
+$sql = "SELECT senha_user FROM digitalcore.usuario WHERE nome_user = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
