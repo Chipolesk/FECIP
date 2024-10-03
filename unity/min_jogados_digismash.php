@@ -1,6 +1,6 @@
 <?php
 // Conectar ao banco de dados
-$serverName = "seu_servidor";
+$serverName = "digitalcoreserver.database.windows.net";
 $connectionOptions = array(
     "Database" => "seu_banco_de_dados",
     "Uid" => "seu_usuario",
