@@ -1,10 +1,13 @@
 <?php
-// Conectar ao banco de dados
+// Defina as informações de conexão
 $serverName = "digitalcoreserver.database.windows.net";
 $connectionOptions = array(
-    "Database" => "seu_banco_de_dados",
-    "Uid" => "seu_usuario",
-    "PWD" => "sua_senha"
+    "Database" => "DigitalCoreDB",
+    "Uid" => "DIGITAL.CORE",
+    "PWD" => "@FECIP2K24",
+    "Encrypt" => true,
+    "TrustServerCertificate" => false,
+    "LoginTimeout" => 30,
 );
 
 $conn = sqlsrv_connect($serverName, $connectionOptions);
@@ -17,7 +20,7 @@ if ($conn === false) {
 $username = $_POST['username'];
 
 // Atualizar o tempo jogado do usuário
-$sql = "UPDATE jogos.digismash SET minutos_jogados = minutos_jogados  + 2 WHERE nome_user = ?";
+$sql = "UPDATE jogos.digismash SET minutos_jogados = minutos_jogados + 2 WHERE nome_user = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
