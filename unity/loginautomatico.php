@@ -21,7 +21,7 @@ if ($conn === false) {
 $username = $_POST['username'];
 
 // Verificar se o usuário já existe
-$sql = "SELECT COUNT(*) as count FROM jogos.digismash WHERE nome_de_usuario = ?";
+$sql = "SELECT COUNT(*) as count FROM jogos.digismash WHERE nome_user = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -35,7 +35,8 @@ if ($row['count'] > 0) {
     echo json_encode(array('status' => 'sucesso', 'message' => 'Usuário já existe.'));
 } else {
     // Inserir o usuário se não existir
-    $sql = "INSERT INTO jogos.digismash (nome_de_usuario) VALUES (?)";
+    $sql = "INSERT INTO jogos.digismash (nome_user, minutos_jogados) VALUES (?, 0)";
+    $params = array($username);
     $stmt = sqlsrv_query($conn, $sql, $params);
 
     if ($stmt === false) {
