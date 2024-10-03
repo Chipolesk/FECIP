@@ -1,42 +1,33 @@
 function abrirJogo(jogo) {
-    // Recupera o nickname e o ícone do usuário logado do localStorage
     const nickname = localStorage.getItem('nickname');
-    const iconeUser = localStorage.getItem('icone_user'); // Supondo que o ícone do usuário também está armazenado
+    const iconeUser = localStorage.getItem('icone_user');
 
-    // Faz a requisição para o Flask enviando o nome do jogo, nickname e ícone do usuário
+    // Verifique se os dados necessários estão disponíveis
+    if (!nickname) {
+        console.error('Nickname do usuário não encontrado no localStorage.');
+        return; // Retorna sem fazer a requisição
+    }
+    if (!iconeUser){
+         console.error('ícone do usuário não encontrado no localStorage.');
+        return;
+    }
+
     fetch('http://localhost:5000/abrir_jogo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-            jogo: jogo, 
-            nickname: nickname, 
-            icone_user: iconeUser  // Envia o ícone do usuário
-        }),
+        body: JSON.stringify({ jogo: jogo, nickname: nickname, icone_user: iconeUser }),
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        console.log('Jogo aberto:', data);
+        if (data.error) {
+            console.error(data.error); // Exibe o erro retornado do servidor
+        } else {
+            console.log('Jogo aberto:', data.message);
+        }
     })
     .catch((error) => {
         console.error('Erro ao abrir o jogo:', error);
     });
 }
-
-// Exemplo de como adicionar ao botão do DigiSmash
-document.getElementById('botao-digismash').addEventListener('click', function() {
-    abrirJogo('DigiSmash');
-});
-
-document.getElementById('botao-sto').addEventListener('click', function() {
-    abrirJogo('STO');
-});
-
-document.getElementById('botao-hih').addEventListener('click', function() {
-    abrirJogo('HiH');
-});
-
-document.getElementById('botao-dress').addEventListener('click', function() {
-    abrirJogo('Dress O mama');
-});
