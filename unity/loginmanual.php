@@ -22,7 +22,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Verificar se o usuário existe
-$sql = "SELECT senha_user FROM digitalcore.usuario WHERE nome_user = ?";
+$sql = "SELECT senha_user FROM digitalcore.usuario WHERE user_name = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -37,7 +37,7 @@ if ($row) {
     if (password_verify($password, $row['senha_user'])) {
         echo json_encode(array('status' => 'sucesso', 'message' => 'Login bem-sucedido.'));
     } else {
-        echo json_encode(array('status' => 'erro_senha', 'message' => 'Senha incorreta.'));
+        echo json_encode(array('status' => 'erro_senha', 'message' => 'Saenha incorreta.'));
     }
 } else {
     echo json_encode(array('status' => 'erro_usuario', 'message' => 'Usuário não encontrado.'));
