@@ -2,8 +2,7 @@ function abrirJogo(jogo) {
     const nickname = localStorage.getItem('nickname');
     const iconeUser = localStorage.getItem('icone_user');
 
-    console.log(nickname);
-    console.log(iconeUser);
+    
     
     // Verifique se os dados necessários estão disponíveis
     if (!nickname) {
@@ -28,6 +27,8 @@ function abrirJogo(jogo) {
             console.error(data.error); // Exibe o erro retornado do servidor
         } else {
             console.log('Jogo aberto:', data.message);
+            console.log(nickname);
+            console.log(iconeUser);
         }
     })
     .catch((error) => {
