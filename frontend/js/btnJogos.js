@@ -19,3 +19,6 @@ function abrirJogo(jogo) {
 document.getElementById('botao-digismash').addEventListener('click', function() {
     abrirJogo('DigiSmash');
 });
+document.getElementById('botao-sto').addEventListener('click', function() {
+    abrirJogo('STO');
+});
