@@ -34,7 +34,7 @@ $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
 if ($row) {
     // Verificar se a senha está correta
-    if (password_verify($password, $row['senha'])) {
+    if (password_verify($password, $row['senha_user'])) {
         echo json_encode(array('status' => 'sucesso', 'message' => 'Login bem-sucedido.'));
     } else {
         echo json_encode(array('status' => 'erro_senha', 'message' => 'Senha incorreta.'));
