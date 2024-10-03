@@ -2,6 +2,9 @@ function abrirJogo(jogo) {
     const nickname = localStorage.getItem('nickname');
     const iconeUser = localStorage.getItem('icone_user');
 
+    console.log(nickname);
+    console.log(iconeUser);
+    
     // Verifique se os dados necessários estão disponíveis
     if (!nickname) {
         console.error('Nickname do usuário não encontrado no localStorage.');
