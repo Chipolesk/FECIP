@@ -1,14 +1,19 @@
 function abrirJogo(jogo) {
-    // Recupera o nickname do usuário logado do localStorage
-    const nickname = document.getElementById('nome')
+    // Recupera o nickname e o ícone do usuário logado do localStorage
+    const nickname = localStorage.getItem('nickname');
+    const iconeUser = localStorage.getItem('icone_user'); // Supondo que o ícone do usuário também está armazenado
 
-    // Faz a requisição para o Flask enviando o nome do jogo e o nickname do usuário
+    // Faz a requisição para o Flask enviando o nome do jogo, nickname e ícone do usuário
     fetch('http://localhost:5000/abrir_jogo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ jogo: jogo, nickname: nickname }), // Envia o jogo e o nickname
+        body: JSON.stringify({ 
+            jogo: jogo, 
+            nickname: nickname, 
+            icone_user: iconeUser  // Envia o ícone do usuário
+        }),
     })
     .then(response => response.text())
     .then(data => {
