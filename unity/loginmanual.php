@@ -22,7 +22,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Verificar se o usuário existe
-$sql = "SELECT senha FROM jogos.digismash WHERE nome_user = ?";
+$sql = "SELECT senha_user FROM jogos.digismash WHERE nome_user = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
