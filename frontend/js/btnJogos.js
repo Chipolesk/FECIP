@@ -1,6 +1,6 @@
 function abrirJogo(jogo) {
     // Recupera o nickname do usuário logado do localStorage
-    const nickname = localStorage.getItem('nickname');
+    const nickname = document.getElementById('nome')
 
     // Faz a requisição para o Flask enviando o nome do jogo e o nickname do usuário
     fetch('http://localhost:5000/abrir_jogo', {
