@@ -21,8 +21,8 @@ if ($conn === false) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// Verificar se o usuário existe
-$sql = "SELECT senha_user FROM jogos.digismash WHERE nome_user = ?";
+// Verificar se o usuário existe NA TABELA DO D CORE NAO DO JOGO/1 PORRAAAA
+$sql = "SELECT senha_user FROM digitalcore.usuario WHERE nome_user = ?";
 $params = array($username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
