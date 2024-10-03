@@ -37,10 +37,10 @@ if ($row) {
     if (password_verify($password, $row['senha_user'])) {
         echo json_encode(array('status' => 'sucesso', 'message' => 'Login bem-sucedido.'));
     } else {
-        echo json_encode(array('status' => 'erro', 'message' => 'Senha incorreta.'));
+        echo json_encode(array('status' => 'erro_senha', 'message' => 'Senha incorreta.'));
     }
 } else {
-    echo json_encode(array('status' => 'erro', 'message' => 'Usuário não encontrado.'));
+    echo json_encode(array('status' => 'erro_usuario', 'message' => 'Usuário não encontrado.'));
 }
 
 // Fechar a conexão
