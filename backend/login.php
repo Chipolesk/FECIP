@@ -39,7 +39,7 @@ try {
             $senha_user_login = $_POST['senha_user_login'];  
 
             // Montar o comando SQL
-            $sql = "SELECT COUNT(*) as total FROM digitalcore.usuario WHERE nome_user = ? AND senha_user = ?";
+            $sql = "SELECT * FROM digitalcore.usuario WHERE nome_user = ? AND senha_user = ?";
             $params = array($nome_user_login, $senha_user_login);
 
             // Executar a query
@@ -52,14 +52,26 @@ try {
             }
 
             // Obter o resultado
-            $resultado = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-            $count = $resultado['total'];
+            $usuario = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
-            if ($count > 0) {
-                $response = array('status' => 'sucesso', 'message' => 'BEM-VINDO ' . htmlspecialchars($nome_user_login));
+            if ($usuario) {
+                // Se o usuário foi encontrado, preparar resposta de sucesso
+                $response = array('status' => 'sucesso', 'message' => 'BEM-VINDO ' . htmlspecialchars($usuario['nome_user']));
+                
+                // Gravar os dados do usuário em um arquivo JSON
+                $dados_usuario = array(
+                    "nome_user" => $usuario['nome_user'],
+                    "icone_user" => $usuario['icone_user']
+                );
+                
+                $arquivo_json = json_encode($dados_usuario);
+                file_put_contents('ultimo_usuario.json', $arquivo_json);
+
             } else {
+                // Se o usuário não foi encontrado, preparar resposta de erro
                 $response = array('status' => 'erro', 'message' => 'USUÁRIO NÃO ENCONTRADO');
             }
+
             echo json_encode($response);
         } else {
             throw new Exception('Dados do usuário não recebidos corretamente.');
