@@ -47,8 +47,17 @@ try {
                 throw new Exception('Falha ao inserir usuário: ' . json_encode(sqlsrv_errors()));
             } else {
                 
-                    echo "<script>usuarioRegistrado('$nome_user');</script>";
-                $response = array('status' => 'sucesso', 'message' => 'Usuário inserido com sucesso!');
+                 // Se o usuário foi encontrado, preparar resposta de sucesso
+                $response = array('status' => 'sucesso', 'message' => 'Usuario Inserido com Sucesso ' . htmlspecialchars($nome_user));
+                
+                // Gravar os dados do usuário em um arquivo JSON
+                $dados_usuario = array(
+                    "nome_user" => htmlspecialchars($nome_user),
+                    "icone_user" => htmlspecialchars($icone_user)
+                );
+
+                $arquivo_json = json_encode($dados_usuario);
+                file_put_contents('ultimo_usuario.json', $arquivo_json);
                 echo json_encode($response);
             }
         } else {
