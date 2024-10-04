@@ -10,16 +10,16 @@ function userLogado() {
     fetch('https://digitalcore.azurewebsites.net/backend/ultimo_usuario.json')
         .then(response => response.json())  // Parse o JSON
         .then(data => {
-            const nomeUser = data.nome_user;  // Nome do usuário no JSON
-
+            const nomeUser = data.nome_user;  // Nome do usuário no JSON 
+            console.log(nomeUser);
             // Elementos HTML
             const btnCad_Log = document.getElementById('user-controls');  // Botões de Cadastro e Login
             const btnLogado = document.getElementById('user-info');  // Div do usuário logado
 
             if (nomeUser) {
                 // Se o usuário está logado, exibir a div com as informações do usuário
-                btnLogado.style.display = 'block';  // Mostrar div do usuário logado
-                btnCad_Log.style.display = 'none';  // Ocultar botões de cadastro e login
+                document.getElementById('user-controls').style.display = 'block';  // Mostrar div do usuário logado
+                document.getElementById('user-info').style.display = 'none';  // Ocultar botões de cadastro e login
 
                 // Atualizar o conteúdo da div com o nome do usuário
                 document.getElementById('username').innerText = nomeUser;
