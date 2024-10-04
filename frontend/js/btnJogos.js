@@ -1,5 +1,5 @@
 function abrirJogo(jogo) {
-    fetch('http://localhost:5000/abrir_jogo', {
+    fetch('http://127.0.0.1:5000/abrir_jogo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
