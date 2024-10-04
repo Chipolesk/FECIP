@@ -27,8 +27,6 @@ try {
     if ($conn === false) {
         throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors()));
     }
-    echo "VOCÊ ESTÁ CONECTADO AO SQL SERVER. . .";
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['nome_user']) && isset($_POST['senha_user']) && isset($_POST['icone_escolhido'])) {
             $nome_user = $_POST['nome_user'];  
@@ -58,7 +56,6 @@ try {
 
                 $arquivo_json = json_encode($dados_usuario);
                 file_put_contents('ultimo_usuario.json', $arquivo_json);
-                echo json_encode($response);
             }
              // Obter status e mensagem da resposta
             $status = $response['status'];
