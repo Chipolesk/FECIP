@@ -71,71 +71,10 @@ try {
                 // Se o usuário não foi encontrado, preparar resposta de erro
                 $response = array('status' => 'erro', 'message' => 'USUÁRIO NÃO ENCONTRADO');
             }
-
-            // Obter status e mensagem da resposta
-            $status = $response['status'];
-            $message = $response['message'];
-
+            
             echo json_encode($response);
 
-            echo "
-            <!DOCTYPE html>
-            <html lang='pt-br'>
-            <head>
-                <meta charset='UTF-8'>
-                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                <title>Confirmação</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        background-color: #f4f4f9;
-                        color: #333;
-                        text-align: center;
-                        padding: 50px;
-                    }
-                    .container {
-                        background-color: #fff;
-                        padding: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        display: inline-block;
-                    }
-                    h1 {
-                        color: " . ($status == 'sucesso' ? '#28a745' : '#dc3545') . ";
-                    }
-                    p {
-                        font-size: 18px;
-                        margin: 10px 0;
-                    }
-                    .btn {
-                        background-color: #007bff;
-                        color: #fff;
-                        padding: 10px 20px;
-                        border: none;
-                        border-radius: 5px;
-                        text-decoration: none;
-                        font-size: 16px;
-                    }
-                    .btn:hover {
-                        background-color: #0056b3;
-                    }
-                </style>
-                <script>
-                    // Redirecionar para o index.html após 5 segundos
-                    setTimeout(function() {
-                        window.location.href = 'index.html';
-                    }, 5000);
-                </script>
-            </head>
-            <body>
-                <div class='container'>
-                    <h1>" . ($status == 'sucesso' ? 'Sucesso!' : 'Erro!') . "</h1>
-                    <p>" . htmlspecialchars($message) . "</p>
-                    <a href='index.html' class='btn'>Voltar</a>
-                </div>
-            </body>
-            </html>
-            ";
+           
         } else {
             throw new Exception('Dados do usuário não recebidos corretamente.');
         }
