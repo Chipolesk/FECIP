@@ -93,7 +93,8 @@ try {
             $html .= '<div class="container">';
             $html .= '<h1>' . ($status == "sucesso" ? "Sucesso!" : "Erro!") . '</h1>';  // Corrigido
             $html .= '<p>' . htmlspecialchars($message) . '</p>';  // Corrigido
-            $html .= '<a href="index.html" class="btn">Voltar</a>';
+            $html .= '<h3>Voltaremos à página principal em 5s</h3>';  // Corrigido
+            $html .= '<a href="../index.html" class="btn">Voltar</a>';
             $html .= '</div>';
             $html .= '</body>';
             $html .= '</html>';
