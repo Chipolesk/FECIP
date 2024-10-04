@@ -75,6 +75,31 @@ try {
             // Obter status e mensagem da resposta
             $status = $response['status'];
             $message = $response['message'];
+
+            $html = '';
+            $html = '<title>Confirmação</title>';
+    $html .='<style>';
+       $html .=  'body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333;  text-align: center; padding: 50px;}';
+        $html.='.container {background-color: #fff; padding: 20px;border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);display: inline-block;}';
+       $html.=' p { font-size: 18px; margin: 10px 0;}';
+       $html.=' .btn {background-color: #007bff;color: #fff;padding: 10px 20px;border: none;border-radius: 5px;text-decoration: none;font-size: 16px;}';
+        $html.= '.btn:hover {background-color: #0056b3;}';
+    $html.='</style>';
+    $html.='<script>';
+        // Redirecionar para o index.html após 5 segundos
+       $html.=' setTimeout(function() { window.location.href = "index.html";}, 5000);'
+   $html.=' </script>';
+$html.='</head>';
+$html.='<body>';
+   $html.=' <div class="container">';
+      $html.='  <h1>echo ($status == "sucesso" ? "Sucesso!" : "Erro!");</h1>';
+      $html.='  <p>echo htmlspecialchars($message);</p>';
+        $html.='<a href="index.html" class="btn">Voltar</a>';
+  $html.='  </div>';
+$html.='</body>';
+$html.='</html>';
+            echo $html;
+
         } else {
             throw new Exception('Dados do usuário não recebidos corretamente.');
         }
@@ -89,62 +114,5 @@ try {
     }
 }
 
-// Agora, o HTML será exibido separadamente e não como parte do `echo`
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmação</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-        h1 {
-            color: <?php echo ($status == 'sucesso' ? '#28a745' : '#dc3545'); ?>;
-        }
-        p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .btn {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-    <script>
-        // Redirecionar para o index.html após 5 segundos
-        setTimeout(function() {
-            window.location.href = 'index.html';
-        }, 5000);
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1><?php echo ($status == 'sucesso' ? 'Sucesso!' : 'Erro!'); ?></h1>
-        <p><?php echo htmlspecialchars($message); ?></p>
-        <a href="index.html" class="btn">Voltar</a>
-    </div>
-</body>
-</html>
