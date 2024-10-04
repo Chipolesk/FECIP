@@ -76,28 +76,28 @@ try {
             $status = $response['status'];
             $message = $response['message'];
 
+            // Gerar HTML
             $html = '';
-            $html = '<title>Confirmação</title>';
-    $html .='<style>';
-       $html .=  'body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333;  text-align: center; padding: 50px;}';
-        $html.='.container {background-color: #fff; padding: 20px;border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);display: inline-block;}';
-       $html.=' p { font-size: 18px; margin: 10px 0;}';
-       $html.=' .btn {background-color: #007bff;color: #fff;padding: 10px 20px;border: none;border-radius: 5px;text-decoration: none;font-size: 16px;}';
-        $html.= '.btn:hover {background-color: #0056b3;}';
-    $html.='</style>';
-    $html.='<script>';
-        // Redirecionar para o index.html após 5 segundos
-       $html.=' setTimeout(function() { window.location.href = "index.html";}, 5000);'
-   $html.=' </script>';
-$html.='</head>';
-$html.='<body>';
-   $html.=' <div class="container">';
-      $html.='  <h1>echo ($status == "sucesso" ? "Sucesso!" : "Erro!");</h1>';
-      $html.='  <p>echo htmlspecialchars($message);</p>';
-        $html.='<a href="index.html" class="btn">Voltar</a>';
-  $html.='  </div>';
-$html.='</body>';
-$html.='</html>';
+            $html .= '<title>Confirmação</title>';
+            $html .= '<style>';
+            $html .= 'body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; text-align: center; padding: 50px;}';
+            $html .= '.container {background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: inline-block;}';
+            $html .= 'p { font-size: 18px; margin: 10px 0;}';
+            $html .= '.btn {background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;}';
+            $html .= '.btn:hover {background-color: #0056b3;}';
+            $html .= '</style>';
+            $html .= '<script>';
+            $html .= 'setTimeout(function() { window.location.href = "index.html"; }, 5000);';
+            $html .= '</script>';
+            $html .= '<body>';
+            $html .= '<div class="container">';
+            $html .= '<h1>' . ($status == "sucesso" ? "Sucesso!" : "Erro!") . '</h1>';  // Corrigido
+            $html .= '<p>' . htmlspecialchars($message) . '</p>';  // Corrigido
+            $html .= '<a href="index.html" class="btn">Voltar</a>';
+            $html .= '</div>';
+            $html .= '</body>';
+            $html .= '</html>';
+
             echo $html;
 
         } else {
@@ -115,4 +115,3 @@ $html.='</html>';
 }
 
 ?>
-
