@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-header('Content-Type: application/json');
+header('Content-Type: text/html');
 
 try {
     // Defina as informações de conexão
