@@ -20,3 +20,13 @@ function abrirJogo(jogo) {
         console.error('Erro ao abrir o jogo:', error);
     });
 }
+
+
+document.getElementById('botao-digismash').addEventListener('click', function() {
+    abrirJogo('DigiSmash');
+document.getElementById('botao-sto').addEventListener('click', function() {
+    abrirJogo('STO');
+document.getElementById('botao-hih').addEventListener('click', function() {
+    abrirJogo('HiH');
+document.getElementById('botao-dress').addEventListener('click', function() {
+    abrirJogo('DRESS');
