@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
@@ -33,10 +33,10 @@ try {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         error_log("Requisição POST recebida");
-        
+
         if (isset($_POST['nome_user_login']) && isset($_POST['senha_user_login'])) {
-            $nome_user_login = $_POST['nome_user_login'];  
-            $senha_user_login = $_POST['senha_user_login'];  
+            $nome_user_login = $_POST['nome_user_login'];
+            $senha_user_login = $_POST['senha_user_login'];
 
             // Montar o comando SQL
             $sql = "SELECT * FROM digitalcore.usuario WHERE nome_user = ? AND senha_user = ?";
@@ -60,10 +60,10 @@ try {
                 
                 // Gravar os dados do usuário em um arquivo JSON
                 $dados_usuario = array(
-                    "nome_user" => $usuario['nome_user'],
-                    "icone_user" => $usuario['icone_user']
+                    "nome_user" => htmlspecialchars($usuario['nome_user']),
+                    "icone_user" => htmlspecialchars($usuario['icone_user'])
                 );
-                
+
                 $arquivo_json = json_encode($dados_usuario);
                 file_put_contents('ultimo_usuario.json', $arquivo_json);
 
@@ -72,7 +72,70 @@ try {
                 $response = array('status' => 'erro', 'message' => 'USUÁRIO NÃO ENCONTRADO');
             }
 
+            // Obter status e mensagem da resposta
+            $status = $response['status'];
+            $message = $response['message'];
+
             echo json_encode($response);
+
+            echo "
+            <!DOCTYPE html>
+            <html lang='pt-br'>
+            <head>
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>Confirmação</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f4f4f9;
+                        color: #333;
+                        text-align: center;
+                        padding: 50px;
+                    }
+                    .container {
+                        background-color: #fff;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        display: inline-block;
+                    }
+                    h1 {
+                        color: " . ($status == 'sucesso' ? '#28a745' : '#dc3545') . ";
+                    }
+                    p {
+                        font-size: 18px;
+                        margin: 10px 0;
+                    }
+                    .btn {
+                        background-color: #007bff;
+                        color: #fff;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        text-decoration: none;
+                        font-size: 16px;
+                    }
+                    .btn:hover {
+                        background-color: #0056b3;
+                    }
+                </style>
+                <script>
+                    // Redirecionar para o index.html após 5 segundos
+                    setTimeout(function() {
+                        window.location.href = 'index.html';
+                    }, 5000);
+                </script>
+            </head>
+            <body>
+                <div class='container'>
+                    <h1>" . ($status == 'sucesso' ? 'Sucesso!' : 'Erro!') . "</h1>
+                    <p>" . htmlspecialchars($message) . "</p>
+                    <a href='index.html' class='btn'>Voltar</a>
+                </div>
+            </body>
+            </html>
+            ";
         } else {
             throw new Exception('Dados do usuário não recebidos corretamente.');
         }
