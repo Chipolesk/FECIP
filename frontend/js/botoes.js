@@ -1,8 +1,9 @@
-function btncadastro(){
-    window.location.href="./frontend/pages/cadastro.html";
+function btncadastro() {
+    window.location.href = "./frontend/pages/cadastro.html";
 }
-function btnlogin(){
-    window.location.href="./frontend/pages/login.html";
+
+function btnlogin() {
+    window.location.href = "./frontend/pages/login.html";
 }
 
 function userLogado() {
@@ -12,14 +13,15 @@ function userLogado() {
         .then(data => {
             const nomeUser = data.nome_user;  // Nome do usuário no JSON 
             console.log(nomeUser);
+
             // Elementos HTML
             const btnCad_Log = document.getElementById('user-controls');  // Botões de Cadastro e Login
             const btnLogado = document.getElementById('user-info');  // Div do usuário logado
 
             if (nomeUser) {
                 // Se o usuário está logado, exibir a div com as informações do usuário
-                document.getElementById('user-controls').style.display = 'block';  // Mostrar div do usuário logado
-                document.getElementById('user-info').style.display = 'none';  // Ocultar botões de cadastro e login
+                btnLogado.style.display = 'block';  // Mostrar div do usuário logado
+                btnCad_Log.style.display = 'none';  // Ocultar botões de cadastro e login
 
                 // Atualizar o conteúdo da div com o nome do usuário
                 document.getElementById('username').innerText = nomeUser;
@@ -27,7 +29,7 @@ function userLogado() {
                 // Caso não haja usuário logado, exibe os botões de cadastro e login
                 btnLogado.style.display = 'none';
                 btnCad_Log.style.display = 'block';
-                console.log('JSON VAZIO');
+                console.log('Nenhum usuário logado');
             }
         })
         .catch(error => {
@@ -47,3 +49,5 @@ function logout() {
     
     // Aqui você pode também implementar a lógica para limpar o usuário logado no backend, se necessário
 }
+document.addEventListener('DOMContentLoaded', userLogado);
+
