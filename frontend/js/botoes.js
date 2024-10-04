@@ -7,7 +7,7 @@ function btnlogin(){
 
 function userLogado() {
     // Carregar o arquivo JSON gerado pelo PHP
-    fetch('ultimo_usuario.json')
+    fetch('https://digitalcore.azurewebsites.net/backend/ultimo_usuario.json')
         .then(response => response.json())  // Parse o JSON
         .then(data => {
             const nomeUser = data.nome_user;  // Nome do usuário no JSON
