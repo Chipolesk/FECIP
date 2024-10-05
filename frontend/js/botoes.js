@@ -54,9 +54,28 @@ function logout() {
     // Limpar a interface e voltar ao estado de não logado
     btnLogado.style.display = 'none';
     btnCad_Log.style.display = 'block';
-    document.getElementById('username').innerText = '';
-    
-    // Aqui você pode também implementar a lógica para limpar o usuário logado no backend, se necessário
+    document.getElementById('username').innerText = 'Nenhum usuário logado'; // Atualiza o texto do nome do usuário
+
+    // Enviar uma solicitação para limpar o usuário no backend
+    fetch('https://digitalcore.azurewebsites.net/backend/ultimo_usuario.json', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao deslogar');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Usuário deslogado com sucesso', data);
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
 }
 
 document.addEventListener('DOMContentLoaded', userLogado);
