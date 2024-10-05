@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: https://chipolesk.github.io/FECIP/index.html");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
@@ -89,7 +89,7 @@ try {
             $html .= '.btn:hover {background-color: #0056b3;}';
             $html .= '</style>';
             $html .= '<script>';
-            $html .= 'setTimeout(function() { window.location.href = "https://chipolesk.github.io/FECIP/index.html"; }, 5000);';
+            $html .= 'setTimeout(function() { window.location.href = "../index.html"; }, 5000);';
             $html .= '</script>';
             $html .= '<body>';
             $html .= '<div class="container">';
