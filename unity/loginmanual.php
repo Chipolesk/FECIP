@@ -17,31 +17,42 @@ if ($conn === false) {
     die(json_encode(array('status' => 'erro', 'message' => 'Falha na conexão com o SQL Server: ' . print_r(sqlsrv_errors(), true))));
 }
 
-// Receber o username e a senha via POST
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Verificar se o usuário existe
-$sql = "SELECT senha_user FROM digitalcore.usuario WHERE nome_user = ?";
-$params = array($username);
-$stmt = sqlsrv_query($conn, $sql, $params);
+$sql_user = "SELECT * FROM digitalcore.usuario WHERE nome_user = ?;";
+$params_user = array($username);
+$stmt_user = sqlsrv_query($conn, $sql_user, $params_user);
 
-if ($stmt === false) {
-    die(json_encode(array('status' => 'erro', 'message' => 'Erro na consulta: ' . print_r(sqlsrv_errors(), true))));
+if ($stmt_user === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
-$row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-
-if ($row) {
-    // Verificar se a senha está correta
-     if ($password == $row['senha_user']) {
-        echo json_encode(array('status' => 'sucesso', 'message' => 'Login bem-sucedido.'));
-    } else {
-        echo json_encode(array('status' => 'erro_senha', 'message' => 'Saenha incorreta.'));
-    }
-} else {
+$row_user = sqlsrv_fetch_array($stmt_user, SQLSRV_FETCH_ASSOC);
+if (!$row_user) {
     echo json_encode(array('status' => 'erro_usuario', 'message' => 'Usuário não encontrado.'));
+} else {
+    // Verificar se a senha está correta
+    $sql_password = "SELECT * FROM digitalcore.usuario WHERE nome_user = ? AND senha_user = ?;";
+    $params_password = array($username, $password);
+    $stmt_password = sqlsrv_query($conn, $sql_password, $params_password);
+
+    if ($stmt_password === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    $row_password = sqlsrv_fetch_array($stmt_password, SQLSRV_FETCH_ASSOC);
+    if ($row_password) {
+        echo json_encode(array('status' => 'sucesso', 'message' => 'Login bem-sucedido.'));
+        // Criar uma sessão para o usuário
+        session_start();
+        $_SESSION['user'] = $row_user['nome_user'];
+    } else {
+        echo json_encode(array('status' => 'erro_senha', 'message' => 'Senha incorreta.'));
+    }
 }
+
 
 // Fechar a conexão
 sqlsrv_close($conn);
