@@ -87,14 +87,14 @@ try {
             $html .= '.btn:hover {background-color: #0056b3;}';
             $html .= '</style>';
             $html .= '<script>';
-            $html .= 'setTimeout(function() { window.location.href = "../index.html"; }, 5000);';
+            $html .= 'setTimeout(function() { window.location.href = "https://chipolesk.github.io/FECIP/index.html"; }, 5000);';
             $html .= '</script>';
             $html .= '<body>';
             $html .= '<div class="container">';
             $html .= '<h1>' . ($status == "sucesso" ? "Sucesso!" : "Erro!") . '</h1>';  // Corrigido
             $html .= '<p>' . htmlspecialchars($message) . '</p>';  // Corrigido
             $html .= '<h3>Voltaremos à página principal em 5s</h3>';  // Corrigido
-            $html .= '<a href="../index.html" class="btn">Voltar</a>';
+            $html .= '<a href="https://chipolesk.github.io/FECIP/index.html" class="btn">Voltar</a>';
             $html .= '</div>';
             $html .= '</body>';
             $html .= '</html>';
