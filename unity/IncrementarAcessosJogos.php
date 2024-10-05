@@ -20,7 +20,7 @@ if ($conn === false) {
 $nome_jogo = $_POST['nome_jogo'];
 
 // Incrementar o número de acessos do jogo
-$sql = "UPDATE jogos SET acessos = acessos + 1 WHERE nome_jogo = ?";
+$sql = "UPDATE jogos SET acessos_jogo = acessos_jogo + 1 WHERE nome_jogo = ?";
 $params = array($nome_jogo);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
