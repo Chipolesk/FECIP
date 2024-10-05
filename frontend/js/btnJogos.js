@@ -10,6 +10,7 @@ function abrirJogo(jogo) {
     .then(data => {
         if (data.error) {
             console.error(data.error); // Exibe o erro retornado do servidor
+            alert(data.error, "Launcher precisa estar aberto");
         } else {
             console.log('Jogo aberto:', data.message);
         }
