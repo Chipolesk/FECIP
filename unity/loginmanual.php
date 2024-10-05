@@ -18,8 +18,7 @@ if ($conn === false) {
 }
 
 $username = $_POST['username'];
-#$password = $_POST['password'];
-$password = '123';
+$password = $_POST['password'];
 // Verificar se o usuário existe
 $sql_user = "SELECT * FROM digitalcore.usuario WHERE nome_user = ?;";
 $params_user = array($username);
