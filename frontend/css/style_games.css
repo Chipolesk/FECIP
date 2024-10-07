@@ -1,0 +1,29 @@
+body{
+    background-color:#121212 ;
+}
+#imglogo {
+    width: 151px;
+    height: 76px;
+}
+
+nav {
+    background-color: #181a2f;
+}
+main{
+    width: 700px;
+    height: 500px;
+    background-color: rgb(219, 203, 164);
+    margin: auto;
+    margin-top: 20px;
+}
+img{
+    float: left;
+    height: 300px;
+    width: 250px;
+}
+
+.info-jogos{
+    float: right;
+    margin: 10px;
+    width: 400px;
+}
