@@ -58,6 +58,5 @@ function atualizarTotalJogadores() {
         })
         .catch(error => console.error('Erro ao buscar o total de jogadores:', error));
 }
-
 // Chama a função quando a página carregar
 document.addEventListener('DOMContentLoaded', atualizarTotalJogadores);
