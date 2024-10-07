@@ -19,24 +19,6 @@ function abrirJogo(jogo) {
         console.error('Erro ao abrir o jogo:', error);
     });
 }
-
-// Adicionando os eventos de clique para os botões
-document.getElementById('botao-digismash').addEventListener('click', function() {
-    abrirJogo('DigiSmash');
-});
-
-document.getElementById('botao-sto').addEventListener('click', function() {
-    abrirJogo('STO');
-});
-
-document.getElementById('botao-hih').addEventListener('click', function() {
-    abrirJogo('HiH');
-});
-
-document.getElementById('botao-dress').addEventListener('click', function() {
-    abrirJogo('DRESS');
-});
-
 // Função para buscar o número de jogadores de todos os jogos e atualizar o HTML
 function atualizarTotalJogadores() {
     fetch('https://digitalcore.azurewebsites.net/backend/totalUsers.php')
@@ -60,3 +42,22 @@ function atualizarTotalJogadores() {
 }
 // Chama a função quando a página carregar
 document.addEventListener('DOMContentLoaded', atualizarTotalJogadores);
+
+
+// Adicionando os eventos de clique para os botões
+document.getElementById('botao-digismash').addEventListener('click', function() {
+    abrirJogo('DigiSmash');
+});
+
+document.getElementById('botao-sto').addEventListener('click', function() {
+    abrirJogo('STO');
+});
+
+document.getElementById('botao-hih').addEventListener('click', function() {
+    abrirJogo('HiH');
+});
+
+document.getElementById('botao-dress').addEventListener('click', function() {
+    abrirJogo('DRESS');
+});
+
