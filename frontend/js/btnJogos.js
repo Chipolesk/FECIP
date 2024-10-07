@@ -36,3 +36,25 @@ document.getElementById('botao-hih').addEventListener('click', function() {
 document.getElementById('botao-dress').addEventListener('click', function() {
     abrirJogo('DRESS');
 });
+
+// Função para buscar o número de jogadores de todos os jogos e atualizar o HTML
+function atualizarTotalJogadores() {
+    fetch('https://digitalcore.azurewebsites.net/backend/totalUsers.php')
+        .then(response => response.json())  // Parse da resposta como JSON
+        .then(data => {
+            // Para cada jogo retornado, atualiza a label correspondente
+            data.forEach(jogo => {
+                const totalPlayersLabel = document.querySelector(`.lbl${jogo.nome_jogo}`);  // Seleciona a label com a classe do jogo
+                if (totalPlayersLabel) {
+                    totalPlayersLabel.innerText = jogo.acessos_jogo;  // Atualiza com o valor de acessos
+                } else {
+                    console.error(`Label não encontrada para o jogo: ${jogo.nome_jogo}`);
+                }
+            });
+        })
+        .catch(error => console.error('Erro ao buscar o total de jogadores:', error));
+}
+
+// Chama a função quando a página carregar
+document.addEventListener('DOMContentLoaded', atualizarTotalJogadores);
+
