@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Adicionando o CSS do BootStrap 5 (framework)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--Adicionando o JS do BootStrap 5 (framework)-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <!--Adicionando o CSS normalmente-->
+    <link rel="stylesheet" href="../css/style_games.css">
+    <title>DIGISMASH</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+            <a href="/index.html" class="navbar-brand"><img id="imglogo" src="../images/logo.png" alt="LOGO"></a>
+            <!--botões de login e cadastro-->
+            <div class="container-btn" id="user-controls">
+                <div class="btn-group" id="auth-buttons">
+                    <button class="btn btn-outline-success" onclick="btncadastroJOGOS()">CADASTRAR</button>
+                    <button class="btn btn-outline-success" onclick="btnloginJOGOS()">LOGAR</button>
+                </div>
+            </div>
+            <!--Botão de Logout-->
+            <div id="user-info" style="display: none;">
+                <span id="username"></span>
+                <button class="btn btn-outline-danger" onclick="logout()">SAIR</button>
+            </div>
+    </nav>
+
+    <main>
+
+    <img src="../images/hih.png" alt="">
+    <div class="info-jogos">
+    <h1>Hadvar in Helheim</h1>
+    <p>Jogo de fases, onde primeiro você deverá matar o morcego e ao passar dessa fase, enfrentará o BOSS gelatina.</p>
+    <button id="botao-hih" class="btn btn-primary">INICIAR</button>
+    </div>
+    </main>
+    <script src="../js/botoes.js"></script>
+    <script src="../js/btnJogos.js"></script>
+
+</body>
+</html>
