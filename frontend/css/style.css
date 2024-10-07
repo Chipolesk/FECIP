@@ -90,6 +90,18 @@ nav {
 
 .game-card button:hover {
     background-color: #365899;
+
+}
+
+#avaliacoes-jogos{
+
+margin:0;
+
+}
+#avaliacoes-jogos i, label{
+    margin-left: 0px;
+    margin-right: 10px;
+
 }
 
 main {
