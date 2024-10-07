@@ -1,13 +1,3 @@
-<?php
-header("Access-Control-Allow-Origin: *"); 
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
-
 header('Content-Type: application/json'); 
 
 try {
@@ -38,12 +28,17 @@ try {
     }
 
     $resultados = [];
-    
+
     while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-        $resultados[$row['nome_jogo']] = $row['acessos_jogo'];
+        // Adiciona cada jogo ao array de resultados
+        $resultados[] = [
+            'nome_jogo' => $row['nome_jogo'],
+            'acessos_jogo' => $row['acessos_jogo']
+        ];
     }
 
-    echo json_encode($resultados); // Retorna os resultados em formato JSON
+    // Retorna os resultados em formato JSON
+    echo json_encode($resultados);
 } catch (Exception $e) {
     $response = array('status' => 'erro', 'message' => $e->getMessage());
     echo json_encode($response);
@@ -52,4 +47,3 @@ try {
         sqlsrv_close($conn);
     }
 }
-?>
