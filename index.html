@@ -23,25 +23,6 @@
 <div class="container-fluid">
 <a href="" class="navbar-brand"><img id="imglogo" src="./frontend/images/logo.png" alt="LOGO"></a>
 
-<!--Menu da Navbar-->
-<div class="collapse navbar-collapse">
-    <div class="navbar-nav">
-        <div class="dropdown">
-        <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" id="menu">Menu</a>
-        <ul class="dropdown-menu">
-            <li><a href="#" class="dropdown-item">Launcher</a></li>
-            <li><a href="#" class="dropdown-item">Misc</a></li>
-            <li><a href="#" class="dropdown-item">sobre</a></li>
-        </ul>
-        </div>
-    </div>
-</div>
-<!--Barra de pesquisa-->
-<form action="" class="dflex" style="margin-right: 340px;">
-    <div class="input-group me-5"><input type="search" name="" id="searchBar" class="form-control" placeholder="Buscar Jogos"><button type="submit" class="btn btn-outline-success">Buscar</button>
-    </div>
-</form>
-
 <div class="container-btn" id="user-controls">
     <div class="btn-group" id="auth-buttons">
         <button class="btn btn-outline-success" onclick="btncadastro()">CADASTRAR</button>
@@ -64,16 +45,14 @@
 <main>
     <h1>Catálogo de Jogos</h1>
 <br><br>
-    <h2>Competitivo</h2>
+    <h2>Mais Famosos!!</h2>
     <br>
     <div class="game-catalog">
-        <!-- Card do Jogo 1 -->
         <div class="grid">
             <!--CARD 1 DIGISMASH-->
             <div class="card">
                 <img src="./frontend/images/digismash.png" alt="DIGISMASH">
                 <div class="card-title">DIGISMASH</div>
-                <button id="botao-digismash" class="btn btn-primary">INICIAR</button>
                 <div class="card-info">
                     <div class="likes">
                     <i class="fa-regular fa-thumbs-up"></i><label>96%</label>
@@ -83,28 +62,10 @@
                     </div>
                 </div>
             </div>
-        <!-- Card do Jogo 2 -->
-        <div class="game-card">
-            <img src="jogo2.jpg" alt="Jogo 2">
-            <h2>STO</h2>
-            <p>RPG cheio de ação com personagens cativantes e batalhas emocionantes.</p>
-            <button id="botao-sto" class="btn btn-primary">INICIAR</button>
-        </div>
-
-        <!-- Card do Jogo 3 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 3">
-            <h2>HiH</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-              <button id="botao-hih" class="btn btn-primary">INICIAR</button>
-        </div>
-
-        <!-- Card do Jogo 4 -->
+            <!--CARD 2 DRESS O' MAMA-->
             <div class="card">
                 <img src="./frontend/images/dress o mama.png" alt="Game Image">
                 <div class="card-title">DRESS O' MAMA</div>
-                 <button id="botao-dress" class="btn btn-primary">INICIAR</button>
-
                 <div class="card-info">
                     <div class="likes">
                     <i class="fa-regular fa-thumbs-up"></i><label>96%</label>
@@ -114,80 +75,20 @@
                     </div>
                 </div>
             </div>
-        
-        </div>
-        <br>
-        <h2>Cooperativo</h2>
-        <br>
-        <div class="game-catalog">
-        <!-- Card do Jogo 5 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 5">
-            <h2>Jogo 5</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
+            <!--CARD 3 HIH-->
+            <div class="card">
+                <img src="./frontend/images/hih.png" alt="Game Image">
+                <div class="card-title">HADVAR IN HELHEIM</div>
+                <div class="card-info">
+                    <div class="likes">
+                    <i class="fa-regular fa-thumbs-up"></i><label>96%</label>
+                    </div>
+                    <div class="players">
+                    <i class="fa-regular fa-user"></i><label>2.741K</label>
+                    </div>
+                </div>
 
-        <!-- Card do Jogo 6 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 6">
-            <h2>Jogo 6</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
-
-        <!-- Card do Jogo 7 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 7">
-            <h2>Jogo 7</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
-        
-        <!-- Card do Jogo 8 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 8">
-            <h2>Jogo 8</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
-        </div>
-        <br>
-        <h2>Para meninas</h2>
-        <br>
-        <div class="game-catalog">
-        <!-- Card do Jogo 9 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 9">
-            <h2>Jogo 9</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
-
-        <!-- Card do Jogo 10 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 10">
-            <h2>Jogo 10</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
-
-
-        <!-- Card do Jogo 11 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 11">
-            <h2>Jogo 11</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
-        </div>
-
-
-        <!-- Card do Jogo 12 -->
-        <div class="game-card">
-            <img src="jogo3.jpg" alt="Jogo 12">
-            <h2>Jogo 12</h2>
-            <p>Simulador de corrida com gráficos impressionantes e carros realistas.</p>
-            <button>Iniciar</button>
+            </div>
         </div>
     </div>
 </main>
