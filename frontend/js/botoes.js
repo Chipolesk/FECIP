@@ -6,6 +6,14 @@ function btnlogin() {
     window.location.href = "./frontend/pages/login.html";
 }
 
+function btncadastroJOGOS() {
+    window.location.href = "./cadastro.html";
+}
+
+function btnloginJOGOS() {
+    window.location.href = "./login.html";
+}
+
 function userLogado() {
     fetch('https://digitalcore.azurewebsites.net/backend/ultimo_usuario.json', {
         method: 'GET',  
