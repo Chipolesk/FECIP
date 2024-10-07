@@ -22,26 +22,32 @@ function abrirJogo(jogo) {
 // Função para buscar o número de jogadores de todos os jogos e atualizar o HTML
 function atualizarTotalJogadores() {
     fetch('https://digitalcore.azurewebsites.net/backend/totalUsers.php')
-        .then(response => response.json())  // Parse da resposta como JSON
+        .then(response => response.json())
         .then(data => {
-            console.log(data); // Exibe os dados recebidos no console
+            console.log(data); // Exibe os dados no console para inspeção
 
-            // Para cada jogo retornado, atualiza a label correspondente
-            data.forEach(jogo => {
-                // Constrói a classe com base no nome do jogo, removendo espaços e transformando em minusculas
-                const className = jogo.nome_jogo.replace(/ /g, '').replace(/:/g, '').replace(/-/g, '').toLowerCase(); 
-                const totalPlayersLabel = document.querySelector(`.${className}`);  // Seleciona a label com a classe do jogo
-                if (totalPlayersLabel) {
-                    totalPlayersLabel.innerText = jogo.acessos_jogo;  // Atualiza com o valor de acessos
-                } else {
-                    console.error(`Label não encontrada para o jogo: ${jogo.nome_jogo}`);
-                }
-            });
+            // Verifica se a resposta é um array
+            if (Array.isArray(data)) {
+                // Para cada jogo retornado, atualiza a label correspondente
+                data.forEach(jogo => {
+                    const className = jogo.nome_jogo.replace(/ /g, '').replace(/:/g, '').toLowerCase();
+                    const totalPlayersLabel = document.querySelector(`.${className}`);  // Seleciona a label com a classe do jogo
+                    if (totalPlayersLabel) {
+                        totalPlayersLabel.innerText = jogo.acessos_jogo;  // Atualiza com o valor de acessos
+                    } else {
+                        console.error(`Label não encontrada para o jogo: ${jogo.nome_jogo}`);
+                    }
+                });
+            } else {
+                console.error('A resposta não é um array:', data);
+            }
         })
         .catch(error => console.error('Erro ao buscar o total de jogadores:', error));
 }
+
 // Chama a função quando a página carregar
 document.addEventListener('DOMContentLoaded', atualizarTotalJogadores);
+
 
 
 // Adicionando os eventos de clique para os botões
