@@ -43,18 +43,17 @@ function atualizarTotalJogadores() {
         .then(response => response.json())  // Parse da resposta como JSON
         .then(data => {
             // Para cada jogo retornado, atualiza a label correspondente
-            data.forEach(jogo => {
-                const totalPlayersLabel = document.querySelector(`.lbl${jogo.nome_jogo}`);  // Seleciona a label com a classe do jogo
+            for (const nome_jogo in data) {
+                const totalPlayersLabel = document.querySelector(`.lbl${nome_jogo.replace(/ /g, '').toUpperCase()}`);  // Seleciona a label com a classe do jogo
                 if (totalPlayersLabel) {
-                    totalPlayersLabel.innerText = jogo.acessos_jogo;  // Atualiza com o valor de acessos
+                    totalPlayersLabel.innerText = data[nome_jogo];  // Atualiza com o valor de acessos
                 } else {
-                    console.error(`Label não encontrada para o jogo: ${jogo.nome_jogo}`);
+                    console.error(`Label não encontrada para o jogo: ${nome_jogo}`);
                 }
-            });
+            }
         })
         .catch(error => console.error('Erro ao buscar o total de jogadores:', error));
 }
 
 // Chama a função quando a página carregar
 document.addEventListener('DOMContentLoaded', atualizarTotalJogadores);
-
