@@ -1,48 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Adicionando o CSS do BootStrap 5 (framework)-->
+    <!--ADICIOANDO O CSS DO BOOTSTRAP 5 (FRAMEWORK)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!--Adicionando o JS do BootStrap 5 (framework)-->
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--ADICIONADO O JS DO BOOTSTRAP5 (FRAMEWORK)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-        <!--Adicionando o CSS normalmente-->
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+     <!--ICONES DO FONT AWSOME-->  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="    
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+     <!--ADICIONANDO O CSS NORMALMENTE-->
     <link rel="stylesheet" href="../css/style_games.css">
     <title>DIGISMASH</title>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-sm">
-        <div class="container-fluid">
-            <a href="/index.html" class="navbar-brand"><img id="imglogo" src="../images/logo.png" alt="LOGO"></a>
-            <!--botões de login e cadastro-->
-            <div class="container-btn" id="user-controls">
-                <div class="btn-group" id="auth-buttons">
-                    <button class="btn btn-outline-success" onclick="btncadastroJOGOS()">CADASTRAR</button>
-                    <button class="btn btn-outline-success" onclick="btnloginJOGOS()">LOGAR</button>
-                </div>
-            </div>
-            <!--Botão de Logout-->
-            <div id="user-info" style="display: none;">
-                <span id="username"></span>
-                <button class="btn btn-outline-danger" onclick="logout()">SAIR</button>
-            </div>
+    <div class="container-fluid">
+    <a href="/index.html" class="navbar-brand"><img id="imglogo" src="../images/logo.png" alt="LOGO"></a>
+
+
+    <!--BOTÕES DE LOGIN E CADASTRO-->
+    <div class="container-btn" id="user-controls">
+    <div class="btn-group" id="auth-buttons">
+    <button class="btn btn-outline-success" onclick="btncadastroJOGOS()">CADASTRAR</button>
+    <button class="btn btn-outline-success" onclick="btnloginJOGOS()">LOGAR</button>
+    </div>
+    </div>
+
+    <!--BOTÃO DE LOGOUT-->
+    <div id="user-info" style="display: none;">
+    <span id="username"></span>
+    <button class="btn btn-outline-danger" onclick="logout()">SAIR</button>
+    </div>
     </nav>
 
-    <main>
 
-    <img src="../images/hih.png" alt="">
-    <div class="info-jogos">
-    <h1>Hadvar in Helheim</h1>
-    <p>Jogo de fases, onde primeiro você deverá matar o morcego e ao passar dessa fase, enfrentará o BOSS gelatina.</p>
-    <button id="botao-hih" class="btn btn-primary">INICIAR</button>
+    <!--SIDEBAR-->
+    <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#">Sobre</a>
+    <a href="/index.html">Catálogo</a>
     </div>
-    </main>
-    <script src="../js/botoes.js"></script>
-    <script src="../js/btnJogos.js"></script>
+    
+    <div id="main">
+    <button class="openbtn" onclick="openNav()">☰</button>
+    </div>
+
+
+    <!--DIV PRINCIPAL COM AS INFOS DO GAME-->
+    <div class="game-container">
+        <div class="game-header">
+            <img src="../images/hih.png" alt="HADVAR">
+            <div class="game-details">
+                <h2>DIGISMASH</h2>
+                <p>Entre no universo de HADVAR IN HELHEIM e teste suas habilidades! Enfrente desafios e divirta-se neste incrível jogo de ação.</p>
+                <button class="btn btn-primary">JOGAR</button>
+                <div class="icons">
+                    <i class="fas fa-thumbs-up" id="like-button"></i><span id="like-count">123</span>
+                    <i class="fas fa-users" style="margin-left: 20px;"></i> <span>456 jogaram</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SCRIPTS DA PÁGINA-->
+    <script src="../js/botoes.js"></script><!--BOTÕES DE LOGIN-->
+    <script src="../js/like_games.js"></script><!--ANIMECAO DE LIKE-->
+    <script src="../js/sidebar.js"></script><!--SIDEBAR INTERATIVA-->  
+    <script src="../js/btnJogos.js"></script><!--BOTAO DE JOGAR-->
 
 </body>
 </html>
