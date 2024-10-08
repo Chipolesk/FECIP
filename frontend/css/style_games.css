@@ -10,21 +10,57 @@ body{
 nav {
     background-color: #181a2f;
 }
-main{
-    width: 700px;
-    height: 500px;
-    background-color: rgb(219, 203, 164);
+.game-container {
+    background-color: #2d2d2d;
+    width: 500px;
     margin: auto;
-    margin-top: 20px;
-}
-img{
-    float: left;
-    height: 300px;
-    width: 250px;
+    margin-top: 60px;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.info-jogos{
-    float: right;
-    margin: 10px;
-    width: 400px;
+.game-header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.game-header img {
+    width: 200px;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.game-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
+.game-details h2 {
+    font-size: 32px;
+}
+
+.game-details p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.game-details button {
+    margin-top: 15px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.icons i {
+    margin-right: 10px;
 }
