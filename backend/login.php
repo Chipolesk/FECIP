@@ -79,29 +79,37 @@ try {
             $message = $response['message'];
 
             // Gerar HTML
-            $html = '';
-            $html .= '<title>Confirmação</title>';
-            $html .= '<style>';
-            $html .= 'body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; text-align: center; padding: 50px;}';
-            $html .= '.container {background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: inline-block;}';
-            $html .= 'p { font-size: 18px; margin: 10px 0;}';
-            $html .= '.btn {background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;}';
-            $html .= '.btn:hover {background-color: #0056b3;}';
-            $html .= '</style>';
-            $html .= '<script>';
-            $html .= 'setTimeout(function() { window.location.href = "../index.html"; }, 5000);';
-            $html .= '</script>';
-            $html .= '<body>';
-            $html .= '<div class="container">';
-            $html .= '<h1>' . ($status == "sucesso" ? "Sucesso!" : "Erro!") . '</h1>';  // Corrigido
-            $html .= '<p>' . htmlspecialchars($message) . '</p>';  // Corrigido
-            $html .= '<h3>Voltaremos à página principal em 5s</h3>';  // Corrigido
-            $html .= '<a href="../index.html" class="btn">Voltar</a>';
-            $html .= '</div>';
-            $html .= '</body>';
-            $html .= '</html>';
+           $html = '';
+$html .= '<title>Confirmação</title>';
+$html .= '<style>';
+$html .= 'body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; text-align: center; padding: 50px;}';
+$html .= '.container {background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: inline-block;}';
+$html .= 'p { font-size: 18px; margin: 10px 0;}';
+$html .= '.btn {background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;}';
+$html .= '.btn:hover {background-color: #0056b3;}';
+$html .= '</style>';
+$html .= '<script>';
+$html .= 'var count = 5;';
+$html .= 'var interval = setInterval(function() {';
+$html .= '    document.getElementById("countdown").innerHTML = count + "s";';
+$html .= '    count--;';
+$html .= '    if (count < 0) {';
+$html .= '        clearInterval(interval);';
+$html .= '        window.location.href = "../index.html";';
+$html .= '    }';
+$html .= '}, 1000);';
+$html .= '</script>';
+$html .= '<body>';
+$html .= '<div class="container">';
+$html .= '<h1>' . ($status == "sucesso" ? "Sucesso!" : "Erro!") . '</h1>';
+$html .= '<p>' . htmlspecialchars($message) . '</p>';
+$html .= '<h3>Voltaremos à página principal em <span id="countdown">5s</span></h3>';
+$html .= '</div>';
+$html .= '</body>';
+$html .= '</html>';
 
-            echo $html;
+echo $html;
+
 
         } else {
             throw new Exception('Dados do usuário não recebidos corretamente.');
