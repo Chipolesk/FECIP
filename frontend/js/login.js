@@ -1,5 +1,5 @@
 // Lista de ícones disponíveis
-var icones = ['../images/icone1.png', '../images/icone2.png', '../images/icone3.png', '../images/icone4.png', '../images/icone5.png', '../images/icone6.png'];
+var icones = ['../images/icone1.png', '../images/icone2.png', '../images/icone3.png', '../images/icone4.png', '../images/icone5.png', '../images/icone6.png', '../images/icone7.png', '../images/icone8.png', '../images/icone9.png', '../images/icone10.png'];
 var indiceAtual = 0;
 
 // Função para mudar o ícone
