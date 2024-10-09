@@ -21,7 +21,7 @@ $nome_jogo = $_POST['nome_jogo'];
 $username = $_POST['username'];
 
 // Atualizar o tempo jogado do usuário no jogo específico
-$sql = "UPDATE ? SET minutos_jogados = minutos_jogados + 2 WHERE nome_user = ?";
+$sql = "UPDATE ? SET minutos_jogados = minutos_jogados + 2 WHERE nome_user = ?;";
 $params = array($nome_jogo ,$username);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
