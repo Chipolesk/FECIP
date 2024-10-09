@@ -17,12 +17,12 @@ if ($conn === false) {
     die(json_encode(array('status' => 'erro', 'message' => 'Falha na conexão com o SQL Server: ' . print_r(sqlsrv_errors(), true))));
 }
 
-$username = $_POST['username'];
+$nome_user = $_POST['nome_user'];
 $password = $_POST['password'];
 
 // Verificar se o usuário existe e a senha está correta
 $sql_user = "SELECT * FROM digitalcore.usuario WHERE nome_user = ? AND senha_user = ?;";
-$params_user = array($username, $password);
+$params_user = array($nome_user, $password);
 $stmt_user = sqlsrv_query($conn, $sql_user, $params_user);
 
 if ($stmt_user === false) {
@@ -35,7 +35,7 @@ if (!$row_user) {
 } else {
     // Verificar se o usuário já existe na tabela jogos.digismash
     $sql_digismash = "SELECT COUNT(*) as count FROM jogos.digismash WHERE nome_user = ?";
-    $params_digismash = array($username);
+    $params_digismash = array($nome_user);
     $stmt_digismash = sqlsrv_query($conn, $sql_digismash, $params_digismash);
 
     if ($stmt_digismash === false) {
@@ -48,7 +48,7 @@ if (!$row_user) {
     } else {
         // Inserir o usuário na tabela jogos.digismash se não existir
         $sql_insert = "INSERT INTO jogos.digismash (nome_user, minutos_jogados) VALUES (?, 0)";
-        $params_insert = array($username);
+        $params_insert = array($nome_user);
         $stmt_insert = sqlsrv_query($conn, $sql_insert, $params_insert);
 
         if ($stmt_insert === false) {
