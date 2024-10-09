@@ -51,27 +51,46 @@ document.addEventListener('DOMContentLoaded', atualizarTotalJogadores);
 
 
 
+// Adicionando os eventos de clique para os botões, verificando se eles existem
+const botaoDigismash = document.getElementById('botao-digismash');
+if (botaoDigismash) {
+    botaoDigismash.addEventListener('click', function() {
+        abrirJogo('DigiSmash');
+    });
+}
 
-// Adicionando os eventos de clique para os botões
-document.getElementById('botao-digismash').addEventListener('click', function() {
-    abrirJogo('DigiSmash');
-});
+const botaoSto = document.getElementById('botao-sto');
+if (botaoSto) {
+    botaoSto.addEventListener('click', function() {
+        abrirJogo('STO');
+    });
+}
 
-document.getElementById('botao-sto').addEventListener('click', function() {
-    abrirJogo('STO');
-});
+const botaoHih = document.getElementById('botao-hih');
+if (botaoHih) {
+    botaoHih.addEventListener('click', function() {
+        abrirJogo('HiH');
+    });
+}
 
-document.getElementById('botao-hih').addEventListener('click', function() {
-    abrirJogo('HiH');
-});
+const botaoDress = document.getElementById('botao-dress');
+if (botaoDress) {
+    botaoDress.addEventListener('click', function() {
+        abrirJogo('DRESS');
+    });
+}
 
-document.getElementById('botao-dress').addEventListener('click', function() {
-    abrirJogo('DRESS');
-});
-document.getElementById('botao-cupcake').addEventListener('click', function() {
-    abrirJogo('CUPCAKE');
-});
-document.getElementById('botao-flappy').addEventListener('click', function() {
-    abrirJogo('FLAPPY');
-});
+const botaoCupcake = document.getElementById('botao-cupcake');
+if (botaoCupcake) {
+    botaoCupcake.addEventListener('click', function() {
+        abrirJogo('CUPCAKE');
+    });
+}
+
+const botaoFlappy = document.getElementById('botao-flappy');
+if (botaoFlappy) {
+    botaoFlappy.addEventListener('click', function() {
+        abrirJogo('FLAPPY');
+    });
+}
 
