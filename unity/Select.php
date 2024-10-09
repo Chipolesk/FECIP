@@ -1,5 +1,5 @@
 <?php
-// Defina as informações de conexãoo
+// Defina as informações de conexão
 $serverName = "digitalcoreserver.database.windows.net";
 $connectionOptions = array(
     "Database" => "DigitalCoreDB",
@@ -21,7 +21,6 @@ $colunas = $_POST['colunas'];
 $tabela = $_POST['tabela'];
 
 // Buscar dados na tabela especificada
-#$sql = "SELECT $colunas FROM $tabela";
 $sql = "SELECT $colunas FROM $tabela";
 $stmt = sqlsrv_query($conn, $sql);
 
@@ -31,10 +30,10 @@ if ($stmt === false) {
 
 $resultados = array();
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-    $resultados[] = $row;
+    $resultados[] = implode('<*>', $row);
 }
 
-echo json_encode($resultados);
+echo implode('<*>', $resultados);
 
 // Fechar a conexão
 sqlsrv_close($conn);
