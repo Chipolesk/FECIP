@@ -21,6 +21,7 @@ $colunas = $_POST['colunas'];
 $tabela = $_POST['tabela'];
 
 // Buscar dados na tabela especificada
+#$sql = "SELECT $colunas FROM $tabela";
 $sql = "SELECT $colunas FROM $tabela";
 $stmt = sqlsrv_query($conn, $sql);
 
