@@ -1,54 +1,45 @@
 const likeButton = document.getElementById('like-button');
 const likeCount = document.getElementById('like-count');
-const nomeJogo = document.getElementById('nome-jogo').innerText;  // Captura o nome do jogo dinamicamente
+const nomeJogoElement = document.getElementById('nome-jogo');
 let liked = false;
-let count = parseInt(likeCount.innerText);
+let count = parseInt(likeCount.innerText) || 0; // Adiciona um valor padrão de 0 caso o innerText não seja um número
 
-// Função para enviar a atualização para o servidor
-function atualizarCurtidas(curtidas) {
+// Função para buscar o número de curtidas do backend
+function fetchLikes() {
+    const nomeJogo = nomeJogoElement.innerText; // Pega o nome do jogo dinamicamente
+    fetch(`https://digitalcore.azurewebsites.net/backend/curtidasJogos.php?nome_jogo=${encodeURIComponent(nomeJogo)}`)
+        .then(response => response.json())
+        .then(data => {
+            count = parseInt(data.curtidas_jogo) || 0;
+            likeCount.innerText = count;
+        })
+        .catch(error => console.error('Erro ao buscar os likes:', error));
+}
+
+// Função para atualizar o número de curtidas no backend
+function updateLikes(newCount) {
+    const nomeJogo = nomeJogoElement.innerText; // Pega o nome do jogo dinamicamente
     fetch('https://digitalcore.azurewebsites.net/backend/curtidasJogos.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            nome_jogo: nomeJogo,  // Passa o nome do jogo dinamicamente
-            curtidas_jogo: curtidas
-        })
+        body: JSON.stringify({ nome_jogo: nomeJogo, curtidas_jogo: newCount })
     })
     .then(response => response.json())
     .then(data => {
         if (data.status === 'sucesso') {
-            console.log('Curtidas atualizadas com sucesso');
-            likeCount.innerText = data.curtidas_jogo;  // Atualiza o contador de curtidas com o valor do backend
+            likeCount.innerText = newCount;
         } else {
-            console.error('Erro ao atualizar curtidas:', data.message);
+            console.error('Erro ao atualizar os likes:', data.message);
         }
     })
-    .catch(error => console.error('Erro ao enviar a atualização:', error));
+    .catch(error => console.error('Erro ao atualizar os likes:', error));
 }
 
-// Função para buscar a contagem atual de curtidas do servidor
-function carregarCurtidas() {
-    fetch('https://digitalcore.azurewebsites.net/backend/curtidasJogos.php?nome_jogo=DIGISMASH', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            likeCount.innerText = data.curtidas_jogo; // Atualiza o contador com as curtidas vindas do servidor
-            count = parseInt(data.curtidas_jogo); // Atualiza a variável count
-        } else {
-            console.error('Erro ao carregar as curtidas');
-        }
-    })
-    .catch(error => console.error('Erro ao carregar as curtidas:', error));
-}
+// Inicializa a contagem de curtidas ao carregar a página
+document.addEventListener('DOMContentLoaded', fetchLikes);
 
-// Atualiza o contador de curtidas no frontend e backend
 likeButton.addEventListener('click', function() {
     if (liked) {
         count--;
@@ -58,12 +49,5 @@ likeButton.addEventListener('click', function() {
         likeButton.classList.add('liked');
     }
     liked = !liked;
-    likeCount.innerText = count;
-
-    // Envia a nova contagem de curtidas para o servidor
-    atualizarCurtidas(count);
+    updateLikes(count);
 });
-
-// Chama a função assim que a página carrega
-window.onload = carregarCurtidas;
-
