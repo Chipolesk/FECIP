@@ -7,7 +7,7 @@ let count = parseInt(likeCount.innerText) || 0; // Adiciona um valor padrão de 
 // Função para buscar o número de curtidas do backend
 function fetchLikes() {
     const nomeJogo = nomeJogoElement.innerText; // Pega o nome do jogo dinamicamente
-    fetch(https://digitalcore.azurewebsites.net/backend/curtidasJogos.php?nome_jogo=${encodeURIComponent(nomeJogo)})
+    fetch('https://digitalcore.azurewebsites.net/backend/curtidasJogos.php?nome_jogo=${encodeURIComponent(nomeJogo)}')
         .then(response => response.json())
         .then(data => {
             count = parseInt(data.curtidas_jogo) || 0;
