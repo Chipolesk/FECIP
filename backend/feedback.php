@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-header('Content-Type: text/html');
+header('Content-Type: application/json'); // Define como JSON
 
 try {
     // Informações de conexão
@@ -27,39 +27,41 @@ try {
     if ($conn === false) {
         throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors()));
     }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['feedback'])) {
-            $feedback = $_POST['feedback'];  
-          
+        // Recebe os dados enviados pelo corpo da requisição
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (isset($data['feedback'])) {
+            $feedback = $data['feedback'];  
             
-            error_log("Dados POST recebidos: " . print_r($_POST, true));
+            error_log("Dados POST recebidos: " . print_r($data, true));
 
-
+            // Prepara a query para inserção
             $sql = "INSERT INTO digitalcore.feedback (feedback) VALUES (?)";
-            $params = $feedback;
+            $params = array($feedback); // Passa o feedback como array
 
             $stmt = sqlsrv_query($conn, $sql, $params);
 
             if ($stmt === false) {
-                throw new Exception('Falha ao inserir usuário: ' . json_encode(sqlsrv_errors()));
+                throw new Exception('Falha ao inserir feedback: ' . json_encode(sqlsrv_errors()));
             } else {
-                
-                 // Se o usuário foi encontrado, preparar resposta de sucesso
-                $response = array('status' => 'sucesso', 'message' => 'Feedback Inserido com Sucesso ');
-                
+                // Retorna resposta de sucesso
+                $response = array('status' => 'sucesso', 'message' => 'Feedback inserido com sucesso');
             }
-          
-           
         } else {
-            throw new Exception('Dados do usuário não foram enviados corretamente.' . json_encode(sqlsrv_errors()));
+            throw new Exception('Dados de feedback não foram enviados corretamente.');
         }
     }
 } catch (Exception $e) {
+    // Retorna resposta de erro
     $response = array('status' => 'erro', 'message' => $e->getMessage());
-    echo json_encode($response);
-} finally {
-    if (isset($conn) && $conn !== false) {
-        sqlsrv_close($conn);
-    }
+}
+
+// Retorna a resposta em JSON
+echo json_encode($response);
+
+if (isset($conn) && $conn !== false) {
+    sqlsrv_close($conn);
 }
 ?>
