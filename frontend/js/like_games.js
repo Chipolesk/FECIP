@@ -28,6 +28,26 @@ function atualizarCurtidas(curtidas) {
     .catch(error => console.error('Erro ao enviar a atualização:', error));
 }
 
+// Função para buscar a contagem atual de curtidas do servidor
+function carregarCurtidas() {
+    fetch('https://digitalcore.azurewebsites.net/backend/curtidasJogos.php?nome_jogo=DIGISMASH', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            likeCount.innerText = data.curtidas_jogo; // Atualiza o contador com as curtidas vindas do servidor
+            count = parseInt(data.curtidas_jogo); // Atualiza a variável count
+        } else {
+            console.error('Erro ao carregar as curtidas');
+        }
+    })
+    .catch(error => console.error('Erro ao carregar as curtidas:', error));
+}
+
 // Atualiza o contador de curtidas no frontend e backend
 likeButton.addEventListener('click', function() {
     if (liked) {
@@ -43,3 +63,7 @@ likeButton.addEventListener('click', function() {
     // Envia a nova contagem de curtidas para o servidor
     atualizarCurtidas(count);
 });
+
+// Chama a função assim que a página carrega
+window.onload = carregarCurtidas;
+
