@@ -18,11 +18,11 @@ if ($conn === false) {
 
 // Receber o nome do jogo e o nome do usuário via POST
 $nome_jogo = $_POST['nome_jogo'];
-$username = $_POST['username'];
+$nome_user = $_POST['nome_user'];
 
-// Atualizar o tempo jogado do usuário no jogo específico
-$sql = "UPDATE ? SET minutos_jogados = minutos_jogados + 2 WHERE nome_user = ?;";
-$params = array($nome_jogo ,$username);
+// Construir a consulta SQL dinamicamente
+$sql = "UPDATE jogos.$nome_jogo SET minutos_jogados = minutos_jogados + 2 WHERE nome_user = ?";
+$params = array($nome_user);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
 if ($stmt === false) {
