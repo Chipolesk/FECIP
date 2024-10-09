@@ -9,8 +9,9 @@ function abrirJogo(jogo) {
     .then(response => response.json())
     .then(data => {
         if (data.error) {
+            alert("O Launcher precisa estar aberto");
             console.error(data.error); // Exibe o erro retornado do servidor
-            alert(data.error + " O Launcher precisa estar aberto");
+           
         } else {
             console.log('Jogo aberto:', data.message);
         }
@@ -26,7 +27,7 @@ function atualizarTotalJogadores() {
         .then(data => {
             console.log(data); // Exibe os dados no console para inspeção
 
-            // Verifica se a resposta é um array
+            // Verifica se a resposta é um vetor
             if (Array.isArray(data)) {
                 // Para cada jogo retornado, atualiza a label correspondente
                 data.forEach(jogo => {
@@ -66,5 +67,11 @@ document.getElementById('botao-hih').addEventListener('click', function() {
 
 document.getElementById('botao-dress').addEventListener('click', function() {
     abrirJogo('DRESS');
+});
+document.getElementById('botao-cupcake').addEventListener('click', function() {
+    abrirJogo('CUPCAKE');
+});
+document.getElementById('botao-flappy').addEventListener('click', function() {
+    abrirJogo('FLAPPY');
 });
 
