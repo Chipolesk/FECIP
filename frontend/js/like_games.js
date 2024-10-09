@@ -2,7 +2,9 @@
 const jogos = document.querySelectorAll('.game-card');
 
 jogos.forEach(jogo => {
-    const nomeJogo = jogo.querySelector('.nome-jogo').dataset.nomeJogo; // Pega o nome do jogo dinamicamente
+    // Seleciona o elemento com o data attribute 'data-nome-jogo'
+    const nomeJogoElement = jogo.querySelector('[data-nome-jogo]');
+    const nomeJogo = nomeJogoElement.dataset.nomeJogo; // Pega o nome do jogo dinamicamente
     const likeButton = jogo.querySelector('.fa-thumbs-up'); // Ícone de like
     const likeCountElement = jogo.querySelector('.like-count'); // Contador de likes
     let liked = false;
