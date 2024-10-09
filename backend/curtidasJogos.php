@@ -30,10 +30,13 @@ try {
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Verifica se o nome do jogo foi enviado
-        if (isset($_POST['nome_jogo'])) {
-            $nome_jogo = $_POST['nome_jogo'];
-            
+        // Recebe os dados enviados como JSON
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (isset($data['nome_jogo']) && isset($data['curtidas_jogo'])) {
+            $nome_jogo = $data['nome_jogo'];
+            $curtidas_jogo = $data['curtidas_jogo'];
+
             // Primeiro, buscar as curtidas atuais
             $sqlSelect = "SELECT curtidas_jogo FROM jogos WHERE nome_jogo = ?";
             $paramsSelect = array($nome_jogo);
@@ -49,7 +52,7 @@ try {
             }
 
             // Incrementa o número de curtidas
-            $curtidasNovas = $curtidasAtuais + 1;
+            $curtidasNovas = $curtidas_jogo;
 
             // Atualiza o número de curtidas no banco
             $sqlUpdate = "UPDATE jogos SET curtidas_jogo = ? WHERE nome_jogo = ?";
@@ -65,7 +68,7 @@ try {
             echo json_encode($response);
 
         } else {
-            throw new Exception('Nome do jogo não foi enviado.');
+            throw new Exception('Dados incompletos: nome do jogo ou curtidas não foram enviados.');
         }
     }
 } catch (Exception $e) {
@@ -76,5 +79,3 @@ try {
         sqlsrv_close($conn);
     }
 }
-
-?>
