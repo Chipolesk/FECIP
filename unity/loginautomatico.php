@@ -18,7 +18,7 @@ if ($conn === false) {
 }
 
 // Receber o username via POST
-$nome_user = $_POST['username'];
+$nome_user = $_POST['nome_user'];
 
 // Verificar se o usuário já existe
 $sql = "SELECT COUNT(*) as count FROM jogos.digismash WHERE nome_user = ?";
