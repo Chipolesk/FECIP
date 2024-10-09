@@ -22,7 +22,7 @@ $novo_record = floatval($_POST['novo_record']);  // Converte o valor para float
 $coluna_fase = $_POST['coluna_fase'];  // O nome da coluna correspondente à fase
 
 // Atualizar o tempo recorde do usuário
-$sql = "UPDATE jogos.HardvarInHelheim SET $coluna_fase = ? WHERE nome_user = ?";
+$sql = "UPDATE jogos.HardvarInHelheim SET $coluna_fase = ? WHERE nome_user = ?;";
 $params = array($novo_record, $nome_user);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
