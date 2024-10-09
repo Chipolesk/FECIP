@@ -1,5 +1,5 @@
 <?php
-// Defina as informações de conexão
+// Defina as informações de conexãoo
 $serverName = "digitalcoreserver.database.windows.net";
 $connectionOptions = array(
     "Database" => "DigitalCoreDB",
