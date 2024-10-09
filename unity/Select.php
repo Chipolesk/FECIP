@@ -19,9 +19,16 @@ if ($conn === false) {
 
 $colunas = $_POST['colunas'];
 $tabela = $_POST['tabela'];
+$ordenarPor = isset($_POST['ordenarpor']) ? $_POST['ordenarpor'] : null;
+$ordem = isset($_POST['ordem']) ? $_POST['ordem'] : null;
 
 // Buscar dados na tabela especificada
-$sql = "SELECT $colunas FROM $tabela;";
+if ($ordenarPor !== null && $ordem !== null) {
+    $sql = "SELECT $colunas FROM $tabela ORDER BY $ordenarPor $ordem;";
+} else {
+    $sql = "SELECT $colunas FROM $tabela;";
+}
+
 $stmt = sqlsrv_query($conn, $sql);
 
 if ($stmt === false) {
