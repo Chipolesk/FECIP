@@ -1,5 +1,6 @@
 const likeButton = document.getElementById('like-button');
 const likeCount = document.getElementById('like-count');
+const nomeJogo = document.getElementById('nome-jogo').innerText;  // Captura o nome do jogo dinamicamente
 let liked = false;
 let count = parseInt(likeCount.innerText);
 
@@ -11,16 +12,17 @@ function atualizarCurtidas(curtidas) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            nome_jogo: 'DIGISMASH',  // ou pegue o nome do jogo dinamicamente
+            nome_jogo: nomeJogo,  // Passa o nome do jogo dinamicamente
             curtidas_jogo: curtidas
         })
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
+        if (data.status === 'sucesso') {
             console.log('Curtidas atualizadas com sucesso');
+            likeCount.innerText = data.curtidas_jogo;  // Atualiza o contador de curtidas com o valor do backend
         } else {
-            console.error('Erro ao atualizar curtidas');
+            console.error('Erro ao atualizar curtidas:', data.message);
         }
     })
     .catch(error => console.error('Erro ao enviar a atualização:', error));
