@@ -59,12 +59,16 @@
         <div class="game-header">
             <img src="../images/cupcake.png" alt="CUPCAKE PARTY">
             <div class="game-details">
-                <h2 id="nome-jogo">CUPCAKE PARTY</h2>
+                <div class="game-card">
+                <h2 id="nome-jogo" data-nome-jogo="CUPCAKE PARTY">CUPCAKE PARTY</h2>
                 <p>Entre no universo de CUPCAKE PARTY e teste suas habilidades! Enfrente desafios e divirta-se neste incrível jogo de ação.</p>
                 <button class="btn btn-primary" id="botao-cupcake">JOGAR</button>
                 <div class="icons">
-                    <i class="fas fa-thumbs-up" id="like-button"></i><span id="like-count">0</span>
-                    <i class="fas fa-users" style="margin-left: 20px;"></i> <label class="cupcakeparty">456 jogaram</span>
+                    <i class="fas fa-thumbs-up" id="like-button"></i>
+                    <label class="like-count likes-cupcakeparty">0</label>
+                    <i class="fas fa-users" style="margin-left: 20px;"></i> 
+                    <label class="cupcakeparty">456 jogaram</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,7 +76,7 @@
 
     <!--SCRIPTS DA PÁGINA-->
     <script src="../js/botoes.js"></script><!--BOTÕES DE LOGIN-->
-    <script src="../js/likeIndividuais.js"></script><!--ANIMACAO DE LIKE-->
+    <script src="../js/like_games.js"></script><!--ANIMACAO DE LIKE-->
     <script src="../js/sidebar.js"></script><!--SIDEBAR INTERATIVA-->  
     <script src="../js/btnJogos.js"></script><!--BOTAO DE JOGAR-->
 
