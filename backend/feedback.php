@@ -41,15 +41,25 @@ try {
         if ($stmt === false) {
             throw new Exception('Falha ao inserir feedback: ' . json_encode(sqlsrv_errors()));
         } else {
-            // Exibe uma mensagem de sucesso em HTML
-            echo "<script>alert('Obrigado por deixar seu comentário!');</script>";
+            // Exibe uma mensagem de sucesso e redireciona para o index.html
+            echo "
+                <script>
+                    alert('Obrigado por deixar seu comentário!');
+                    window.location.href = '../index.html'; // Redireciona para a página inicial
+                </script>
+            ";
         }
     } else {
         throw new Exception('Feedback não enviado corretamente.');
     }
 } catch (Exception $e) {
-    // Exibe uma mensagem de erro em HTML
-    echo "<script>alert('Erro: " . htmlspecialchars($e->getMessage()) . "');</script>";
+    // Exibe uma mensagem de erro e redireciona para o index.html
+    echo "
+        <script>
+            alert('Erro: " . htmlspecialchars($e->getMessage()) . "');
+            window.location.href = '../index.html'; // Redireciona para a página inicial
+        </script>
+    ";
 }
 
 // Fecha a conexão
