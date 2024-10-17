@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-header('Content-Type: application/json'); // Define como JSON para respostas corretas
+// Define o tipo de resposta como HTML
+header('Content-Type: text/html; charset=UTF-8');
 
 try {
     // Informações de conexão
@@ -22,46 +23,36 @@ try {
         "LoginTimeout" => 30,
     );
 
+    // Conecta ao banco de dados
     $conn = sqlsrv_connect($serverName, $connectionOptions);
-
     if ($conn === false) {
-        throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors(), JSON_PRETTY_PRINT));
+        throw new Exception('Falha na conexão com o SQL Server: ' . json_encode(sqlsrv_errors()));
     }
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['feedback'])) {
-            $feedback = $_POST['feedback'];
-            error_log("Dados POST recebidos: " . print_r($feedback, true));
+    // Verifica se a requisição é POST e se o feedback foi enviado
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['feedback'])) {
+        $feedback = $_POST['feedback'];
 
-            // Prepara a query para inserção
-            $sql = "INSERT INTO digitalcore.feedback (feedback) VALUES (?)";
-            $params = array($feedback);
+        // Prepara a query de inserção
+        $sql = "INSERT INTO digitalcore.feedback (feedback) VALUES (?)";
+        $params = array($feedback); 
 
-            $stmt = sqlsrv_query($conn, $sql, $params);
-
-            if ($stmt === false) {
-                throw new Exception('Falha ao inserir feedback: ' . json_encode(sqlsrv_errors(), JSON_PRETTY_PRINT));
-            } else {
-                // Retorna resposta de sucesso
-                $response = array('status' => 'sucesso', 'message' => 'Feedback inserido com sucesso');
-                echo json_encode($response);
-
-                // Gera um alerta no navegador do cliente
-                echo '<script>alert("OBRIGADO POR DEIXAR SEU COMENTÁRIO!");</script>';
-                exit; // Encerra a execução após enviar a resposta
-            }
+        $stmt = sqlsrv_query($conn, $sql, $params);
+        if ($stmt === false) {
+            throw new Exception('Falha ao inserir feedback: ' . json_encode(sqlsrv_errors()));
         } else {
-            throw new Exception('Dados de feedback não foram enviados corretamente.');
+            // Exibe uma mensagem de sucesso em HTML
+            echo "<script>alert('Obrigado por deixar seu comentário!');</script>";
         }
+    } else {
+        throw new Exception('Feedback não enviado corretamente.');
     }
 } catch (Exception $e) {
-    // Retorna resposta de erro como JSON
-    $response = array('status' => 'erro', 'message' => $e->getMessage());
-    echo json_encode($response);
-    exit;
+    // Exibe uma mensagem de erro em HTML
+    echo "<script>alert('Erro: " . htmlspecialchars($e->getMessage()) . "');</script>";
 }
 
-// Fecha a conexão, se aberta
+// Fecha a conexão
 if (isset($conn) && $conn !== false) {
     sqlsrv_close($conn);
 }
