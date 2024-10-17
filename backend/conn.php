@@ -114,7 +114,7 @@ $html .= '    document.getElementById("countdown").innerHTML = count + "s";';
 $html .= '    count--;';
 $html .= '    if (count < 0) {';
 $html .= '        clearInterval(interval);';
-$html .= '        window.location.href = "../index.html";';
+$html .= '        window.location.href = "../frontend/pages/cadastro.html";';
 $html .= '    }';
 $html .= '}, 1000);';
 $html .= '</script>';
