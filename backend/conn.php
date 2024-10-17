@@ -97,8 +97,37 @@ echo $html;
         }
     }
 } catch (Exception $e) {
-    $response = array('status' => 'erro', 'message' => $e->getMessage());
-    echo json_encode($response);
+ // Gerar HTML
+            $html = '';
+$html .= '<title>Confirmação</title>';
+$html .= '<style>';
+$html .= 'body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; text-align: center; padding: 50px;}';
+$html .= '.container {background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: inline-block;}';
+$html .= 'p { font-size: 18px; margin: 10px 0;}';
+$html .= '.btn {background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; font-size: 16px;}';
+$html .= '.btn:hover {background-color: #0056b3;}';
+$html .= '</style>';
+$html .= '<script>';
+$html .= 'var count = 5;';
+$html .= 'var interval = setInterval(function() {';
+$html .= '    document.getElementById("countdown").innerHTML = count + "s";';
+$html .= '    count--;';
+$html .= '    if (count < 0) {';
+$html .= '        clearInterval(interval);';
+$html .= '        window.location.href = "../index.html";';
+$html .= '    }';
+$html .= '}, 1000);';
+$html .= '</script>';
+$html .= '<body>';
+$html .= '<div class="container">';
+$html .= '<h1> ESTE USUÁRIO JÁ EXISTE!</h1>';
+$html .= '<p> TENTE OUTRO NOME</p>';
+$html .= '<h3>Voltaremos à página principal em <span id="countdown">5s</span></h3>';
+$html .= '</div>';
+$html .= '</body>';
+$html .= '</html>';
+
+echo $html;    
 } finally {
     if (isset($conn) && $conn !== false) {
         sqlsrv_close($conn);
