@@ -22,16 +22,29 @@ nav {
     position: absolute;
     left: 10%;
     top: 120px;
-    width: 900px;
-    height: 300px;
-    margin-left: 60px;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
 }
 
 .box1 img {
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: auto;
 }
+
+@media (max-width: 768px) {
+    .box1 {
+        top: 60px;
+        left: 5%;
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
 .game-catalog {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
