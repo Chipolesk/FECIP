@@ -17,6 +17,7 @@ function abrirJogo(jogo) {
         }
     })
     .catch((error) => {
+        alert("O Launcher precisa estar aberto");
         console.error('Erro ao abrir o jogo:', error);
     });
 }
