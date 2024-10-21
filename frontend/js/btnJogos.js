@@ -9,7 +9,7 @@ function abrirJogo(jogo) {
     .then(response => response.json())
     .then(data => {
         if (data.error) {
-            alert("O Launcher precisa estar aberto");
+            console.error("O Launcher precisa estar aberto");
             console.error(data.error); // Exibe o erro retornado do servidor
            
         } else {
