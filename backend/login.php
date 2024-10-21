@@ -63,7 +63,8 @@ try {
                 // Gravar os dados do usuário em um arquivo JSON
                 $dados_usuario = array(
                     "nome_user" => htmlspecialchars($usuario['nome_user']),
-                    "icone_user" => htmlspecialchars($usuario['icone_user'])
+                    "icone_user" => htmlspecialchars($usuario['icone_user']),
+                    "jogos_jogados" => htmlspecialchars($usuario['jogos_jogados'])
                 );
 
                 $arquivo_json = json_encode($dados_usuario);
