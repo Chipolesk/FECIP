@@ -30,7 +30,7 @@ if ($stmt === false) {
 
 $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 if ($row) {
-    $wave_registrado = intval($row['wave']);
+    $wave_registrado = intval($row['wave_recorde']);
     if ($wave > $wave_registrado) {
         // Atualizar o wave registrado se o novo wave for maior
         $sql_update = "UPDATE jogos.ShardsTakeOver SET wave_recorde = ? WHERE nome_user = ?;";
