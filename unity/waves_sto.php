@@ -20,7 +20,7 @@ $nome_user = $_POST['nome_user'];
 $wave = intval($_POST['wave']);
 
 // Buscar o wave registrado do usuário na tabela jogos.ShardsTakeOver
-$sql = "SELECT wave FROM jogos.ShardsTakeOver WHERE nome_user = ?";
+$sql = "SELECT wave_recorde FROM jogos.ShardsTakeOver WHERE nome_user = ?;";
 $params = array($nome_user);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -33,7 +33,7 @@ if ($row) {
     $wave_registrado = intval($row['wave']);
     if ($wave > $wave_registrado) {
         // Atualizar o wave registrado se o novo wave for maior
-        $sql_update = "UPDATE jogos.ShardsTakeOver SET wave = ? WHERE nome_user = ?";
+        $sql_update = "UPDATE jogos.ShardsTakeOver SET wave_recorde = ? WHERE nome_user = ?;";
         $params_update = array($wave, $nome_user);
         $stmt_update = sqlsrv_query($conn, $sql_update, $params_update);
 
