@@ -21,7 +21,7 @@ $nome_jogo = $_POST['nome_jogo'];
 $nome_user = $_POST['nome_user'];
 
 // Construir a consulta SQL dinamicamente
-$sql = "UPDATE $nome_jogo SET minutos_jogados = minutos_jogados + 2 WHERE nome_user = ?;";
+$sql = "UPDATE $nome_jogo SET minutos_jogados = minutos_jogados + 1 WHERE nome_user = ?;";
 $params = array($nome_user);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
