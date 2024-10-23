@@ -24,7 +24,7 @@ $ordem = isset($_POST['ordem']) ? $_POST['ordem'] : null;
 
 // Buscar dados na tabela especificada
 if ($ordenarPor !== null && $ordem !== null) {
-    $sql = "SELECT $colunas FROM $tabela ORDER BY $ordenarPor $ordem;";
+    $sql = "SELECT $colunas FROM $tabela WHERE $ordenarpor sua_coluna IS NOT NULL ORDER BY $ordenarPor $ordem;";
 } else {
     $sql = "SELECT $colunas FROM $tabela;";
 }
