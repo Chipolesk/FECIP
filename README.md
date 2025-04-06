@@ -12,6 +12,8 @@
 - Ambas aplicações são conectadas ao banco de dados Microsoft Sql Server e hospedados na Microsoft Azure.
 - O site é hospedado aqui neste repo do GitHub
 - Os jogos foram feitos na unity (não estão disponíveis para jogar e fazer download).
+
+  ###### Algumas funcionabilidades e estilos foram comprometidos porque desativamos o servidor online!.
   
 
   
